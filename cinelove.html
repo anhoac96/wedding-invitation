@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Ngọc Anh & Ngọc An - Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #ba8c74;
+      --text-main: #4a4a4a;
+      --text-light: #7a7a7a;
+      --bg-color: #fcfbfa;
+      --surface: #ffffff;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Cormorant Garamond', serif;
+      --font-sans: 'Montserrat', sans-serif;
+      --font-script: 'Great Vibes', cursive;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: #e9e9e9;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .app-container {
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--bg-color);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    }
+
+    /* Envelope section */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: url('flower-background.png') center/cover no-repeat;
+      padding: 40px 20px;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.85);
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+    }
+    
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      letter-spacing: 2px;
+      color: var(--primary-color);
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+
+    /* CSS Envelope */
+    .envelope-wrapper {
+      position: relative;
+      width: 320px;
+      height: 220px;
+      margin: 0 auto 50px;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+    .envelope {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #e2d8ce;
+      border-radius: 4px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+    }
+    .envelope.open {
+      transform: translateY(50px);
+    }
+    .envelope::before { /* back flap */
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 0; height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-bottom: 120px solid #d5c8bb;
+      z-index: 1;
+    }
+    .envelope-flap {
+      position: absolute;
+      top: 0; left: 0;
+      width: 0; height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-top: 130px solid #cfc0b3;
+      transform-origin: top;
+      transition: transform 0.6s 0.2s ease, z-index 0s 0.3s;
+      z-index: 4;
+    }
+    .envelope.open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+    .envelope-pocket {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 0;
+      border-left: 160px solid #e8e1d7;
+      border-right: 160px solid #e8e1d7;
+      border-bottom: 110px solid #f2ede7;
+      border-top: 110px solid transparent;
+      z-index: 3;
+      border-radius: 0 0 4px 4px;
+    }
+    .wax-seal {
+      position: absolute;
+      top: 110px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px; height: 50px;
+      background: #9c2e2e;
+      border-radius: 50%;
+      z-index: 5;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.3), 0 2px 5px rgba(0,0,0,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: #dfb256; font-family: var(--font-script); font-size: 24px;
+      transition: opacity 0.3s;
+    }
+    .envelope.open .wax-seal {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .card-inside {
+      position: absolute;
+      bottom: 10px;
+      left: 5%;
+      width: 90%;
+      height: 90%;
+      background: #fff;
+      border-radius: 4px;
+      z-index: 2;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: transform 0.8s 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .envelope.open .card-inside {
+      transform: translateY(-120px);
+      z-index: 4;
+    }
+    .card-inside h2 {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    .card-inside p {
+      font-size: 14px;
+      color: var(--text-light);
+    }
+    
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+    .envelope.open ~ .scroll-hint {
+      opacity: 1;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+      40% { transform: translate(-50%, -10px); }
+      60% { transform: translate(-50%, -5px); }
+    }
+
+    /* Content Sections */
+    .section {
+      padding: 60px 24px;
+      text-align: center;
+      background: var(--surface);
+      position: relative;
+    }
+    .section-alt {
+      background: var(--bg-color);
+    }
+    
+    .section-heading {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+    
+    .section-sub {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--text-light);
+      margin-bottom: 40px;
+    }
+
+    /* Parents Info */
+    .parents-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .parent-col h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+    .parent-col p {
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .parent-role {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      color: var(--primary-color);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* Names */
+    .couple-names {
+      margin: 40px 0;
+    }
+    .couple-names .name {
+      font-family: var(--font-heading);
+      font-size: 42px;
+      color: var(--primary-color);
+      line-height: 1.2;
+    }
+    .couple-names .amp {
+      font-family: var(--font-script);
+      font-size: 48px;
+      color: var(--text-light);
+      margin: 10px 0;
+      display: block;
+    }
+
+    /* Event Box */
+    .event-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 30px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+    .event-title {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+    .event-time {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .event-date {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .event-lunar {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+    .event-location {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .btn-map {
+      display: inline-block;
+      padding: 10px 24px;
+      background: var(--primary-color);
+      color: #fff;
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 25px;
+      transition: background 0.3s;
+    }
+    .btn-map:hover {
+      background: #a3755f;
+    }
+
+    /* Kodak Film Strip */
+    .film-strip {
+      background: #111;
+      padding: 20px 0;
+      margin: 40px -24px;
+      position: relative;
+      overflow-x: auto;
+      white-space: nowrap;
+      display: flex;
+      gap: 15px;
+      padding-left: 24px;
+      padding-right: 24px;
+      scrollbar-width: none;
+    }
+    .film-strip::-webkit-scrollbar { display: none; }
+    .film-frame {
+      display: inline-block;
+      width: 280px;
+      height: 380px;
+      background: #222;
+      border: 10px solid #111;
+      border-image: repeating-linear-gradient(to bottom, #111 0, #111 10px, transparent 10px, transparent 20px) 10;
+      border-left-width: 25px;
+      border-right-width: 25px;
+      border-top-width: 0;
+      border-bottom-width: 0;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .film-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .film-text {
+      position: absolute;
+      bottom: 20px;
+      left: 0; width: 100%;
+      text-align: center;
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+
+    /* Countdown */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .cd-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--bg-color);
+      width: 60px;
+      height: 70px;
+      justify-content: center;
+      border-radius: 8px;
+      border: 1px solid #eaeaea;
+    }
+    .cd-num {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      color: var(--primary-color);
+    }
+    .cd-label {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    /* Calendar */
+    .calendar-wrap {
+      max-width: 300px;
+      margin: 40px auto 0;
+    }
+    .cal-month {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      letter-spacing: 1px;
+    }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px 5px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+    }
+    .cal-head {
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+    .cal-day {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      margin: 0 auto;
+      border-radius: 50%;
+    }
+    .cal-day.active {
+      background: var(--primary-color);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(186, 140, 116, 0.4);
+    }
+
+    /* Big Vertical Photo */
+    .vertical-photo {
+      position: relative;
+      margin: 40px 0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .vertical-photo img {
+      width: 100%;
+      display: block;
+    }
+    .vertical-text {
+      position: absolute;
+      top: 50%;
+      left: -40px;
+      transform: translateY(-50%) rotate(-90deg);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 8px;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+
+    /* RSVP / Gift */
+    .gift-box {
+      background: #fdfaf6;
+      border: 1px dashed #d5c8bb;
+      padding: 40px 20px;
+      border-radius: 8px;
+      margin-top: 40px;
+    }
+    .gift-icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+    .gift-box p {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+    .form-group {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+    
+    /* Footer */
+    .footer {
+      padding: 60px 20px;
+      text-align: center;
+      background: #2a2a2a;
+      color: #fff;
+    }
+    .footer p {
+      font-family: var(--font-script);
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+    }
+    .footer span {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    /* Music Player */
+    .music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--primary-color);
+      animation: spin 4s linear infinite;
+    }
+    .music-btn.paused {
+      animation: none;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Music Button -->
+    <div class="music-btn paused" id="musicBtn">🎵</div>
+    <audio id="bgMusic" loop>
+      <source src="wedding-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero / Envelope -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">Wedding Invitation</h1>
+        
+        <div class="envelope-wrapper" id="envelopeBtn">
+          <div class="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-pocket"></div>
+            <div class="wax-seal">N</div>
+            <div class="card-inside">
+              <h2>Ngọc Anh & Ngọc An</h2>
+              <p>17 . 01 . 2027</p>
+            </div>
+          </div>
+        </div>
+        
+        <p style="font-family: var(--font-sans); font-size: 12px; letter-spacing: 3px; color: var(--text-light); text-transform: uppercase; margin-top: 20px;">
+          Trân Trọng Kính Mời
+        </p>
+      </div>
+      <div class="scroll-hint">Kéo xuống để xem thêm<br>↓</div>
+    </section>
+
+    <!-- Couple Info -->
+    <section class="section reveal">
+      <p class="section-sub">Welcome To Our Wedding</p>
+      <h2 class="section-heading">Tình Yêu Của Chúng Tôi</h2>
+      
+      <p style="font-style: italic; color: var(--text-light); margin-bottom: 40px; font-size: 18px;">
+        "My heart, the bird of the wilderness, has found its sky in your eyes."
+      </p>
+
+      <div class="parents-grid">
+        <div class="parent-col">
+          <h3>Nhà Trai</h3>
+          <p>Ông: Nguyễn Ngọc Giáp<br>Bà: Mai Thị Loạt</p>
+          <span class="parent-role">Trưởng Nam</span>
+        </div>
+        <div class="parent-col">
+          <h3>Nhà Gái</h3>
+          <p>Ông: Trần Văn Bách<br>Bà: Trần Thị Thủy</p>
+          <span class="parent-role">Trưởng Nữ</span>
+        </div>
+      </div>
+
+      <div class="couple-names">
+        <div class="name">Ngọc Anh</div>
+        <div class="amp">&</div>
+        <div class="name">Ngọc An</div>
+      </div>
+    </section>
+
+    <!-- KODAK Film Strip -->
+    <section class="section section-alt reveal" style="overflow: hidden; padding-left: 0; padding-right: 0;">
+      <p class="section-sub">Fall In Love</p>
+      <h2 class="section-heading">Kỷ Niệm Tình Yêu</h2>
+      
+      <div class="film-strip">
+        <div class="film-frame">
+          <img src="1.jpg" alt="Photo 1">
+          <div class="film-text">Sun, moon and you</div>
+        </div>
+        <div class="film-frame">
+          <img src="2.jpg" alt="Photo 2">
+          <div class="film-text">Forever together</div>
+        </div>
+        <div class="film-frame">
+          <img src="3.jpg" alt="Photo 3">
+          <div class="film-text">Our special moment</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Details -->
+    <section class="section reveal">
+      <p class="section-sub">Save The Date</p>
+      <h2 class="section-heading">Sự Kiện Cưới</h2>
+
+      <!-- Nạp Tài -->
+      <div class="event-card">
+        <h3 class="event-title">Lễ Nạp Tài</h3>
+        <p class="event-time">10:00</p>
+        <p class="event-date">Thứ Sáu, 15/01/2027</p>
+        <p class="event-lunar">(Tức ngày 08/12 năm Bính Ngọ)</p>
+        <p class="event-location"><strong>Tư gia nhà gái</strong><br>Yên Xá, Hoạt Giang, Thanh Hóa</p>
+        <a href="https://maps.app.goo.gl/sp2fcYJJ2hT5y99A6" target="_blank" class="btn-map">Xem đường đi</a>
+      </div>
+
+      <!-- Tiệc Cưới -->
+      <div class="event-card">
+        <h3 class="event-title">Tiệc Cưới</h3>
+        <p class="event-time">16:00</p>
+        <p class="event-date">Thứ Bảy, 16/01/2027</p>
+        <p class="event-lunar">(Tức ngày 09/12 năm Bính Ngọ)</p>
+        <p class="event-location"><strong>Tư gia nhà trai</strong><br>Bái Sậy, Tống Sơn, Thanh Hóa</p>
+        <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; border-top: 1px solid #eee; padding-top: 15px;">
+          <div><span style="font-size: 12px; color: #888; text-transform: uppercase;">Đón khách</span><br><strong style="font-size: 18px;">15:30</strong></div>
+          <div><span style="font-size: 12px; color: #888; text-transform: uppercase;">Khai tiệc</span><br><strong style="font-size: 18px;">16:00</strong></div>
+        </div>
+        <a href="https://maps.app.goo.gl/DA5znfEUQYwHzxzm7" target="_blank" class="btn-map">Xem đường đi</a>
+      </div>
+
+      <!-- Lễ Thành Hôn -->
+      <div class="event-card">
+        <h3 class="event-title">Lễ Thành Hôn</h3>
+        <p class="event-time">10:00</p>
+        <p class="event-date">Chủ Nhật, 17/01/2027</p>
+        <p class="event-lunar">(Tức ngày 10/12 năm Bính Ngọ)</p>
+        <p class="event-location"><strong>Tư gia nhà trai</strong><br>Bái Sậy, Tống Sơn, Thanh Hóa</p>
+        <a href="https://maps.app.goo.gl/DA5znfEUQYwHzxzm7" target="_blank" class="btn-map">Xem đường đi</a>
+      </div>
+      
+      <!-- Calendar -->
+      <div class="calendar-wrap">
+        <div class="cal-month">Tháng 1, 2027</div>
+        <div class="cal-grid">
+          <div class="cal-head">CN</div><div class="cal-head">T2</div><div class="cal-head">T3</div><div class="cal-head">T4</div><div class="cal-head">T5</div><div class="cal-head">T6</div><div class="cal-head">T7</div>
+          <div></div><div></div><div></div><div></div><div></div><div class="cal-day">1</div><div class="cal-day">2</div>
+          <div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div>
+          <div class="cal-day">10</div><div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day">15</div><div class="cal-day">16</div>
+          <div class="cal-day active">17</div><div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div><div class="cal-day">23</div>
+          <div class="cal-day">24</div><div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div><div class="cal-day">29</div><div class="cal-day">30</div>
+          <div class="cal-day">31</div>
+        </div>
+      </div>
+      
+      <!-- Countdown -->
+      <div class="countdown" id="countdown">
+        <div class="cd-item"><span class="cd-num" id="cd-days">00</span><span class="cd-label">Ngày</span></div>
+        <div class="cd-item"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Giờ</span></div>
+        <div class="cd-item"><span class="cd-num" id="cd-mins">00</span><span class="cd-label">Phút</span></div>
+        <div class="cd-item"><span class="cd-num" id="cd-secs">00</span><span class="cd-label">Giây</span></div>
+      </div>
+
+    </section>
+
+    <!-- Big Vertical Photo -->
+    <section class="section section-alt reveal">
+      <div class="vertical-photo">
+        <img src="4.jpg" alt="Couple">
+        <div class="vertical-text">My Love Forever</div>
+      </div>
+      <p style="font-size: 16px; font-style: italic; line-height: 1.8; color: var(--text-light); max-width: 80%; margin: 0 auto;">
+        "Hạnh phúc lớn nhất chính là được nắm tay anh, cùng nhau đi hết cuộc đời lãng mạn này."
+      </p>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section reveal">
+      <p class="section-sub">Join With Us</p>
+      <h2 class="section-heading">Xác Nhận Tham Dự</h2>
+      
+      <div class="gift-box">
+        <div class="gift-icon">💌</div>
+        <h3 style="font-family: var(--font-heading); font-size: 22px; color: var(--primary-color); margin-bottom: 10px;">Gửi Lời Chúc</h3>
+        <p>Sự hiện diện của bạn là món quà tuyệt vời nhất đối với chúng tôi.</p>
+        
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Họ và tên của bạn...">
+          <textarea class="form-control" rows="3" placeholder="Nhập lời chúc của bạn..."></textarea>
+          <button class="form-submit">Gửi Lời Chúc</button>
+        </div>
+      </div>
+      
+      <div class="gift-box" style="margin-top: 20px;">
+        <div class="gift-icon">🎁</div>
+        <h3 style="font-family: var(--font-heading); font-size: 22px; color: var(--primary-color); margin-bottom: 10px;">Hộp Quà Cưới</h3>
+        <p>Mọi món quà dù nhỏ bé cũng là lời chúc phúc chân thành dành cho đôi uyên ương.</p>
+        <button class="form-submit" style="margin-top: 20px; background: #8e7365;" onclick="alert('Tính năng hộp quà đang được cập nhật!')">Gửi Quà Tặng</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Ngọc Anh & Ngọc An</p>
+      <span>Thank you for celebrating with us!</span>
+    </footer>
+
+  </div>
+
+  <script>
+    // Envelope Animation
+    const envelope = document.querySelector('.envelope');
+    const envelopeBtn = document.getElementById('envelopeBtn');
+    envelopeBtn.addEventListener('click', () => {
+      envelope.classList.add('open');
+      // Play music if not already playing
+      const audio = document.getElementById('bgMusic');
+      const musicBtn = document.getElementById('musicBtn');
+      if (audio.paused) {
+        audio.play().catch(e => console.log(e));
+        musicBtn.classList.remove('paused');
+      }
+    });
+
+    // Music Control
+    const musicBtn = document.getElementById('musicBtn');
+    const audio = document.getElementById('bgMusic');
+    musicBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        musicBtn.classList.remove('paused');
+      } else {
+        audio.pause();
+        musicBtn.classList.add('paused');
+      }
+    });
+
+    // Reveal Animation on Scroll
+    const reveals = document.querySelectorAll('.reveal');
+    function revealOnScroll() {
+      const windowHeight = window.innerHeight;
+      const elementVisible = 100;
+      reveals.forEach(reveal => {
+        const elementTop = reveal.getBoundingClientRect().top;
+        if (elementTop < windowHeight - elementVisible) {
+          reveal.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // trigger initially
+
+    // Countdown Timer (Target: 17/01/2027)
+    const targetDate = new Date("Jan 17, 2027 10:00:00").getTime();
+    const timerInterval = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(timerInterval);
+        document.getElementById("countdown").innerHTML = "<div style='font-family: var(--font-heading); font-size: 24px; color: var(--primary-color);'>Ngày Hạnh Phúc Đã Đến!</div>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("cd-days").innerText = days.toString().padStart(2, '0');
+      document.getElementById("cd-hours").innerText = hours.toString().padStart(2, '0');
+      document.getElementById("cd-mins").innerText = minutes.toString().padStart(2, '0');
+      document.getElementById("cd-secs").innerText = seconds.toString().padStart(2, '0');
+    }, 1000);
+  </script>
+</body>
+</html>

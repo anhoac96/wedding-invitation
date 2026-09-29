@@ -578,10 +578,10 @@ function showLb(i){lbIdx=i;lbPhoto.querySelector('img').src=photoSrcs[i];lbCount
 photos.forEach(function(p,i){
 p.addEventListener('click',function(){showLb(i);lb.classList.add('active');document.body.style.overflow='hidden';});
 });
-document.getElementById('lbClose').addEventListener('click',function(){lb.classList.remove('active');document.body.style.overflow='';});
+document.getElementById('lbClose').addEventListener('click',function(){lb.classList.remove('active');document.body.style.overflow='auto';});
 document.getElementById('lbPrev').addEventListener('click',function(){showLb((lbIdx-1+9)%9);});
 document.getElementById('lbNext').addEventListener('click',function(){showLb((lbIdx+1)%9);});
-lb.addEventListener('click',function(e){if(e.target===lb){lb.classList.remove('active');document.body.style.overflow='';}});
+lb.addEventListener('click',function(e){if(e.target===lb){lb.classList.remove('active');document.body.style.overflow='auto';}});
 </script>
 
 

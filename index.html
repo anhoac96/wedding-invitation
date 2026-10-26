@@ -74,170 +74,391 @@
     }
 
     /* ==========================================================================
-       ENVELOPE LANDING SCREEN (PHONG BÌ NÂU CỔ ĐIỂN - CON DẤU 囍)
+       DEMO CHUNG ĐÔI - MÀN MỞ THIỆP (NHẬT BÌNH ĐỎ - THIỆP KEM TRÊN NỀN NÂU SẪM)
        ========================================================================== */
     .envelope-overlay {
       position: fixed;
       inset: 0;
-      z-index: 100;
-      background: radial-gradient(circle at 50% 45%, #422d20 0%, #281a12 60%, #170e0a 100%);
+      z-index: 999;
+      background: linear-gradient(165deg, #4a3428 0%, #352518 45%, #241a12 100%);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.85s;
+      padding: 24px 16px;
+      overflow: hidden;
+      transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.85s, transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .envelope-overlay.opened {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
+      transform: scale(1.05);
     }
 
-    .envelope-wrapper {
+    /* Ambient Double Happiness Floating Particles in Background */
+    .landing-ambient-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .ambient-particle {
+      position: absolute;
+      bottom: -36px;
+      user-select: none;
+      pointer-events: none;
+      font-family: serif;
+      animation: ambient-rise var(--duration, 20s) ease-in-out var(--delay, 0s) infinite;
+    }
+
+    @keyframes ambient-rise {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.65;
+      }
+
+      88% {
+        opacity: 0.65;
+      }
+
+      100% {
+        transform: translateY(calc(-100vh - 80px)) translateX(var(--sway, 20px));
+        opacity: 0;
+      }
+    }
+
+    /* Central Invitation Card Wrapper (Chung Đôi Responsive Widths) */
+    .landing-card-wrapper {
       position: relative;
-      width: 100%;
-      max-width: 440px;
-      aspect-ratio: 4 / 3;
-      background: linear-gradient(145deg, #d8bc98 0%, #c4a173 50%, #ad8454 100%);
-      border-radius: 12px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 30px 24px;
-      text-align: center;
+      z-index: 10;
+      width: min(320px, 92vw);
+      margin: 0 auto;
       cursor: pointer;
       user-select: none;
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .envelope-wrapper:hover {
-      transform: translateY(-4px) scale(1.01);
+    @media (min-width: 375px) {
+      .landing-card-wrapper {
+        width: 340px;
+      }
     }
 
-    /* Envelope Top Flap Silhouette */
-    .envelope-wrapper::before {
-      content: '';
+    @media (min-width: 600px) {
+      .landing-card-wrapper {
+        width: 480px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .landing-card-wrapper {
+        width: 540px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .landing-card-wrapper {
+        width: 580px;
+      }
+    }
+
+    .landing-card-wrapper:hover {
+      transform: translateY(-4px) scale(1.008);
+    }
+
+    /* Round Wax Seal Stamp overlapping the top of the card */
+    .landing-seal {
       position: absolute;
       top: 0;
-      left: 0;
-      right: 0;
-      height: 48%;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(0, 0, 0, 0.08) 100%);
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      pointer-events: none;
-    }
-
-    .env-guest-tag {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #542e08;
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-
-    .env-guest-name {
-      font-size: clamp(20px, 5.5vw, 26px);
-      font-family: var(--font-oswald);
-      font-weight: 700;
-      color: var(--red-text);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
-    }
-
-    .env-seal-btn {
-      position: relative;
-      width: 76px;
-      height: 76px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #eb3938, #b31b1a 65%, #7e0c0b 100%);
+      background: radial-gradient(circle at 35% 30%, #e03230 0%, #c32a29 50%, #8b0c0b 100%);
+      box-shadow: 0 4px 20px rgba(195, 42, 41, 0.55), inset 0 2px 4px rgba(255, 255, 255, 0.35);
+      z-index: 30;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 24px rgba(179, 27, 26, 0.6), 0 0 0 3px rgba(248, 200, 139, 0.5);
-      cursor: pointer;
-      border: none;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: seal-pulse 2.2s infinite ease-in-out;
-    }
-
-    .env-seal-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 12px 30px rgba(179, 27, 26, 0.8), 0 0 0 4px rgba(248, 200, 139, 0.8);
-    }
-
-    .env-seal-btn img {
-      width: 44px;
-      height: 44px;
-      object-fit: contain;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+      animation: seal-pulse 2.2s ease-in-out infinite;
     }
 
     @keyframes seal-pulse {
 
       0%,
       100% {
-        box-shadow: 0 8px 24px rgba(179, 27, 26, 0.5), 0 0 0 3px rgba(248, 200, 139, 0.5);
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 4px 20px rgba(195, 42, 41, 0.55), inset 0 2px 4px rgba(255, 255, 255, 0.35);
       }
 
       50% {
-        box-shadow: 0 12px 32px rgba(179, 27, 26, 0.75), 0 0 0 6px rgba(248, 200, 139, 0.8);
+        transform: translate(-50%, -50%) scale(1.06);
+        box-shadow: 0 8px 30px rgba(195, 42, 41, 0.8), inset 0 2px 5px rgba(255, 255, 255, 0.5);
       }
     }
 
-    .env-open-hint {
-      margin-top: 18px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #542e08;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    .landing-seal-img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
     }
 
-    /* Ambient Double Happiness Floating on Envelope */
-    .env-floating-particles {
+    /* Main Cream Paper Card */
+    .landing-card {
+      position: relative;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #fbf7eb 0%, #f4ebd6 50%, #fbf7eb 100%);
+      border: 1px solid rgba(195, 42, 41, 0.15);
+      box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 40px rgba(195, 42, 41, 0.15);
+      overflow: hidden;
+    }
+
+    /* Decorative Illustrations in Card Background */
+    .landing-card-decor {
       position: absolute;
       inset: 0;
       pointer-events: none;
       overflow: hidden;
+      border-radius: 12px;
+      z-index: 1;
     }
 
-    .env-part {
+    .landing-decor-hoa {
       position: absolute;
-      color: rgba(248, 200, 139, 0.25);
-      font-size: 20px;
-      user-select: none;
-      animation: float-up 6s infinite linear;
+      top: 12px;
+      left: -18px;
+      width: clamp(120px, 35%, 175px);
+      max-height: 160px;
+      object-fit: contain;
+      opacity: 0.42;
+      transform: scaleY(-1) rotate(20deg);
+      pointer-events: none;
     }
 
-    @keyframes float-up {
+    .landing-decor-longden {
+      position: absolute;
+      top: -8px;
+      right: 0px;
+      width: clamp(48px, 14%, 65px);
+      object-fit: contain;
+      opacity: 0.42;
+      transform: translate(-10px, -5px);
+      pointer-events: none;
+    }
+
+    .landing-decor-quat {
+      position: absolute;
+      bottom: 0px;
+      left: -10px;
+      width: clamp(140px, 44%, 230px);
+      max-height: 220px;
+      object-fit: contain;
+      opacity: 0.42;
+      transform: translate(-80px, 25px) rotate(45deg);
+      pointer-events: none;
+    }
+
+    .landing-decor-may {
+      position: absolute;
+      bottom: -5px;
+      right: -15px;
+      width: clamp(180px, 52%, 300px);
+      max-height: 220px;
+      object-fit: contain;
+      opacity: 0.42;
+      transform: scaleX(-1) translate(130px, 30px);
+      pointer-events: none;
+    }
+
+    /* Card Content Area */
+    .landing-card-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 54px 16px 26px;
+    }
+
+    @media (min-width: 600px) {
+      .landing-card-content {
+        padding: 68px 32px 34px;
+      }
+    }
+
+    /* Couple Names */
+    .landing-couple-h1 {
+      margin-bottom: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.15;
+    }
+
+    .landing-groom-name,
+    .landing-bride-name {
+      font-family: var(--font-bungee);
+      color: #c32a29;
+      -webkit-text-stroke: 2.5px #F8C88B;
+      paint-order: stroke fill;
+      font-size: clamp(21px, 5.2vw, 36px);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .landing-ampersand {
+      font-family: 'Playfair Display', 'Lora', Georgia, serif;
+      color: #542e08;
+      font-size: clamp(18px, 4.5vw, 22px);
+      line-height: 1.2;
+      margin: 2px 0;
+      font-style: italic;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Delicate Divider with ❦ */
+    .landing-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .landing-divider-line {
+      width: 42px;
+      height: 1px;
+    }
+
+    .landing-divider-line.left {
+      background: linear-gradient(to right, transparent, rgba(84, 46, 8, 0.45));
+    }
+
+    .landing-divider-line.right {
+      background: linear-gradient(to left, transparent, rgba(84, 46, 8, 0.45));
+    }
+
+    .landing-divider-glyph {
+      color: rgba(84, 46, 8, 0.5);
+      font-size: 14px;
+    }
+
+    /* Wedding Date */
+    .landing-date {
+      color: rgba(84, 46, 8, 0.88);
+      font-family: 'Lora', 'Times New Roman', Georgia, serif;
+      font-size: clamp(16px, 3.8vw, 18px);
+      margin-bottom: 18px;
+      font-weight: 400;
+    }
+
+    /* Guest Invitation Box */
+    .landing-guest-box {
+      margin-bottom: 22px;
+    }
+
+    .landing-than-moi {
+      color: rgba(84, 46, 8, 0.88);
+      font-family: 'Lora', 'Times New Roman', Georgia, serif;
+      font-size: clamp(16px, 3.8vw, 18px);
+      font-weight: 300;
+      margin-bottom: 8px;
+    }
+
+    .landing-guest-badge {
+      background-color: rgba(84, 46, 8, 0.06);
+      display: inline-block;
+      padding: 8px 22px;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      max-width: 95%;
+      overflow-wrap: anywhere;
+    }
+
+    .landing-guest-name {
+      color: #542e08;
+      font-family: 'Lora', 'Times New Roman', Georgia, serif;
+      font-size: clamp(18px, 4.2vw, 21px);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .landing-du-tiec {
+      color: rgba(84, 46, 8, 0.88);
+      font-family: 'Lora', 'Times New Roman', Georgia, serif;
+      font-size: clamp(14px, 3.5vw, 16px);
+      font-weight: 300;
+    }
+
+    /* Red Pill Button "Mở thiệp" with Glowing Shadow & Sweeping Shine */
+    .landing-open-btn {
+      position: relative;
+      background-color: #c32a29;
+      color: #f8f3e0;
+      box-shadow: 0 4px 14px rgba(195, 42, 41, 0.35), 0 8px 24px rgba(195, 42, 41, 0.25);
+      font-family: 'Lora', 'Times New Roman', Georgia, serif;
+      font-size: clamp(16px, 3.8vw, 18px);
+      font-weight: 600;
+      padding: 10px 36px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      overflow: hidden;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    }
+
+    .landing-open-btn:hover {
+      transform: scale(1.05);
+      background-color: #b31b1a;
+      box-shadow: 0 6px 20px rgba(195, 42, 41, 0.55), 0 10px 30px rgba(195, 42, 41, 0.35);
+    }
+
+    .landing-open-btn:active {
+      transform: scale(0.98);
+    }
+
+    .landing-btn-shine {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      animation: shine 3s ease-in-out infinite;
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 36px;
+      pointer-events: none;
+    }
+
+    @keyframes shine {
       0% {
-        transform: translateY(100%) rotate(0deg);
-        opacity: 0;
+        left: -80px;
       }
 
-      20% {
-        opacity: 0.6;
-      }
-
-      80% {
-        opacity: 0.6;
+      25% {
+        left: 120%;
       }
 
       100% {
-        transform: translateY(-120%) rotate(45deg);
-        opacity: 0;
+        left: 120%;
       }
     }
+
 
     /* ==========================================================================
        MAIN INVITATION CARD CONTAINER (EXACT DEMO PROPORTIONS)
@@ -1838,21 +2059,78 @@
   </audio>
 
   <!-- ==========================================================================
-       1. ENVELOPE COVER SCREEN (PHONG BÌ NÂU CỔ ĐIỂN - CON DẤU 囍)
+       1. ENVELOPE / LANDING COVER SCREEN (MÀN MỞ THIỆP CHUẨN DEMO CHUNG ĐÔI)
        ========================================================================== -->
   <div class="envelope-overlay" id="envelopeScreen">
-    <div class="env-floating-particles" id="envParticles"></div>
+    <!-- Ambient Floating Song Hỷ Background Particles -->
+    <div class="landing-ambient-bg" id="landingAmbientBg" aria-hidden="true">
+      <div class="ambient-particle" style="left:6.7%;color:#c32a29;font-size:24px;--sway:21px;animation-duration:19.5s;animation-delay:-12.8s">囍</div>
+      <div class="ambient-particle" style="left:45.3%;color:#e8d4a8;font-size:17px;--sway:20px;animation-duration:25.1s;animation-delay:-10.8s">囍</div>
+      <div class="ambient-particle" style="left:51.2%;color:#6b4423;font-size:13px;--sway:-28px;animation-duration:19.7s;animation-delay:-13.9s">囍</div>
+      <div class="ambient-particle" style="left:69.6%;color:#c32a29;font-size:20px;--sway:15px;animation-duration:20.7s;animation-delay:-11.3s">囍</div>
+      <div class="ambient-particle" style="left:10.1%;color:#6b4423;font-size:14px;--sway:-16px;animation-duration:24.5s;animation-delay:-20.5s">囍</div>
+      <div class="ambient-particle" style="left:89.7%;color:#f8f3e0;font-size:11px;--sway:20px;animation-duration:20.9s;animation-delay:-8.1s">囍</div>
+      <div class="ambient-particle" style="left:78.5%;color:#f8f3e0;font-size:22px;--sway:24px;animation-duration:22.7s;animation-delay:-7.8s">囍</div>
+      <div class="ambient-particle" style="left:81.1%;color:#f8f3e0;font-size:21px;--sway:-16px;animation-duration:20.7s;animation-delay:-1.5s">囍</div>
+      <div class="ambient-particle" style="left:72.4%;color:#6b4423;font-size:22px;--sway:-12px;animation-duration:18.4s;animation-delay:-4.0s">囍</div>
+      <div class="ambient-particle" style="left:32.1%;color:#f8f3e0;font-size:12px;--sway:12px;animation-duration:21.6s;animation-delay:-19.3s">囍</div>
+      <div class="ambient-particle" style="left:41.6%;color:#e8d4a8;font-size:24px;--sway:-13px;animation-duration:22.5s;animation-delay:-14.6s">囍</div>
+      <div class="ambient-particle" style="left:53.7%;color:#f8f3e0;font-size:24px;--sway:-1px;animation-duration:19.3s;animation-delay:-2.4s">囍</div>
+    </div>
 
-    <div class="envelope-wrapper" id="envelopeWrapper">
-      <div class="env-guest-tag">TRÂN TRỌNG KÍNH MỜI</div>
-      <div class="env-guest-name" id="envGuestName">Quý Khách</div>
+    <!-- Center Invitation Card -->
+    <div class="landing-card-wrapper" id="envelopeWrapper">
+      <!-- Round Wax Seal Stamp overlapping top border -->
+      <div class="landing-seal" id="landingSeal">
+        <img src="assets/chinese_happiness.webp" alt="Song Hỷ" class="landing-seal-img">
+      </div>
 
-      <button class="env-seal-btn" id="openEnvelopeBtn" aria-label="Mở thiệp cưới">
-        <img src="assets/chu-hy.webp" alt="Song Hỷ">
-      </button>
+      <!-- Main Cream Card -->
+      <div class="landing-card">
+        <!-- 4 Decorative artworks on corners/edges -->
+        <div class="landing-card-decor" aria-hidden="true">
+          <img src="assets/hoa.webp" alt="" class="landing-decor-hoa">
+          <img src="assets/long-den.webp" alt="" class="landing-decor-longden">
+          <img src="assets/quat.webp" alt="" class="landing-decor-quat">
+          <img src="assets/may.webp" alt="" class="landing-decor-may">
+        </div>
 
-      <div class="env-open-hint">
-        <span>CHẠM ĐỂ MỞ THIỆP</span>
+        <!-- Card Content -->
+        <div class="landing-card-content">
+          <!-- Couple Names -->
+          <h1 class="landing-couple-h1">
+            <span class="landing-groom-name" id="landingGroom">NGỌC ANH</span>
+            <span class="landing-ampersand">&amp;</span>
+            <span class="landing-bride-name" id="landingBride">NGỌC AN</span>
+          </h1>
+
+          <!-- Divider -->
+          <div class="landing-divider">
+            <div class="landing-divider-line left"></div>
+            <span class="landing-divider-glyph">❦</span>
+            <div class="landing-divider-line right"></div>
+          </div>
+
+          <!-- Wedding Date -->
+          <div class="landing-date">
+            <span id="landingDate">17 tháng 1, 2027</span>
+          </div>
+
+          <!-- Invitation & Guest Name Badge -->
+          <div class="landing-guest-box">
+            <p class="landing-than-moi" id="landingThanMoi">Kính Mời</p>
+            <div class="landing-guest-badge">
+              <h2 class="landing-guest-name" id="envGuestName">QUÝ KHÁCH</h2>
+            </div>
+            <p class="landing-du-tiec" id="landingDuTiec">Dự tiệc chung vui cùng gia đình chúng tôi</p>
+          </div>
+
+          <!-- Open Button -->
+          <button type="button" class="landing-open-btn" id="openEnvelopeBtn" aria-label="Mở thiệp cưới">
+            <span>Mở thiệp</span>
+            <div class="landing-btn-shine"></div>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -2344,11 +2622,63 @@
     ];
     let currentPhotoIdx = 0;
 
-    // 1. Envelope & Guest Name Recognition from URL (?to=...)
+    // 1. Envelope & Guest Name Recognition from URL (?to=... or ?guest=...)
     const urlParams = new URLSearchParams(window.location.search);
     const guestParam = urlParams.get('to') || urlParams.get('guest');
+    const guestEl = document.getElementById('envGuestName');
+    const thanMoiEl = document.getElementById('landingThanMoi');
+    const duTiecEl = document.getElementById('landingDuTiec');
+
     if (guestParam) {
-      document.getElementById('envGuestName').textContent = decodeURIComponent(guestParam);
+      const decodedGuest = decodeURIComponent(guestParam).trim();
+      if (guestEl) guestEl.textContent = decodedGuest;
+
+      // Tùy biến lời mời phù hợp danh xưng hoặc qua tham số ?sub=
+      if (urlParams.get('sub')) {
+        if (duTiecEl) duTiecEl.textContent = decodeURIComponent(urlParams.get('sub'));
+      } else {
+        const lower = decodedGuest.toLowerCase();
+        if (lower.startsWith('bác') || lower.startsWith('chú') || lower.startsWith('cô') || lower.startsWith('dì') || lower.startsWith('cậu') || lower.startsWith('ông') || lower.startsWith('bà') || lower.startsWith('gia đình bác') || lower.startsWith('gia đình chú') || lower.startsWith('gia đình cô') || lower.startsWith('gia đình dì') || lower.startsWith('gia đình cậu')) {
+          if (thanMoiEl) thanMoiEl.textContent = 'Kính Mời';
+          if (duTiecEl) duTiecEl.textContent = 'Dự tiệc chung vui cùng gia đình chúng cháu';
+        } else if (lower.startsWith('anh') || lower.startsWith('chị') || lower.startsWith('gia đình anh') || lower.startsWith('gia đình chị')) {
+          if (thanMoiEl) thanMoiEl.textContent = 'Trân Trọng Kính Mời';
+          if (duTiecEl) duTiecEl.textContent = 'Dự tiệc chung vui cùng hai em';
+        } else if (lower.startsWith('em') || lower.startsWith('gia đình em')) {
+          if (thanMoiEl) thanMoiEl.textContent = 'Thân Mời';
+          if (duTiecEl) duTiecEl.textContent = 'Dự tiệc chung vui cùng anh chị';
+        } else {
+          if (thanMoiEl) thanMoiEl.textContent = 'Trân Trọng Kính Mời';
+          if (duTiecEl) duTiecEl.textContent = 'Dự tiệc chung vui cùng gia đình chúng tôi';
+        }
+      }
+
+      // Tự động điền tên vào ô gửi lời chúc (Wishbook)
+      const wishNameInput = document.getElementById('wishName');
+      if (wishNameInput && !wishNameInput.value) {
+        wishNameInput.value = decodedGuest;
+      }
+    } else {
+      // Mặc định dùng chung
+      if (guestEl) guestEl.textContent = 'QUÝ KHÁCH';
+      if (thanMoiEl) thanMoiEl.textContent = 'Kính Mời';
+      if (duTiecEl) duTiecEl.textContent = 'Dự tiệc chung vui cùng gia đình chúng tôi';
+    }
+
+    if (urlParams.get('prefix') && thanMoiEl) {
+      thanMoiEl.textContent = decodeURIComponent(urlParams.get('prefix'));
+    }
+    if (urlParams.get('groom')) {
+      const groomEl = document.getElementById('landingGroom');
+      if (groomEl) groomEl.textContent = decodeURIComponent(urlParams.get('groom'));
+    }
+    if (urlParams.get('bride')) {
+      const brideEl = document.getElementById('landingBride');
+      if (brideEl) brideEl.textContent = decodeURIComponent(urlParams.get('bride'));
+    }
+    if (urlParams.get('date')) {
+      const dateEl = document.getElementById('landingDate');
+      if (dateEl) dateEl.textContent = decodeURIComponent(urlParams.get('date'));
     }
 
     // Envelope Open Trigger
@@ -2358,35 +2688,35 @@
     const musicBtn = document.getElementById('musicToggleBtn');
 
     function openEnvelope() {
+      if (!envelopeScreen || envelopeScreen.classList.contains('opened')) return;
       envelopeScreen.classList.add('opened');
       document.body.classList.remove('locked');
 
       // Attempt Auto-play Audio
       if (audio) {
         audio.play().then(() => {
-          musicBtn.classList.add('playing');
+          if (musicBtn) musicBtn.classList.add('playing');
         }).catch(err => {
           console.log('Audio autoplay prevented:', err);
         });
       }
     }
 
-    envelopeWrapper.addEventListener('click', openEnvelope);
-    document.getElementById('openEnvelopeBtn').addEventListener('click', (e) => {
-      e.stopPropagation();
-      openEnvelope();
-    });
+    // Auto-open if ?open=1 parameter is present
+    if (urlParams.get('open') === '1') {
+      envelopeScreen.classList.add('opened');
+      document.body.classList.remove('locked');
+    }
 
-    // Ambient floating particles on envelope
-    const envParticlesContainer = document.getElementById('envParticles');
-    for (let i = 0; i < 8; i++) {
-      const part = document.createElement('div');
-      part.className = 'env-part';
-      part.textContent = '囍';
-      part.style.left = (Math.random() * 90 + 5) + '%';
-      part.style.animationDelay = (Math.random() * 5) + 's';
-      part.style.animationDuration = (Math.random() * 3 + 5) + 's';
-      envParticlesContainer.appendChild(part);
+    if (envelopeWrapper) {
+      envelopeWrapper.addEventListener('click', openEnvelope);
+    }
+    const openBtn = document.getElementById('openEnvelopeBtn');
+    if (openBtn) {
+      openBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openEnvelope();
+      });
     }
 
     // Music Player Button Toggle

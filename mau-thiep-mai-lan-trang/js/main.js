@@ -18,7 +18,6 @@ const weddingAudio = document.getElementById('weddingAudio');
 const musicToggleBtn = document.getElementById('musicToggleBtn');
 const guestEl = document.getElementById('envGuestName');
 const thanMoiEl = document.getElementById('envThanMoi');
-const ambientPetalsLayer = document.getElementById('ambientPetalsLayer');
 
 // 3. Dynamic URL Query Parameters & Smart Vietnamese Greeting Logic
 const urlParams = new URLSearchParams(window.location.search);
@@ -62,31 +61,7 @@ if (urlParams.get('date')) {
   if (dateEl) dateEl.textContent = decodeURIComponent(urlParams.get('date'));
 }
 
-// 4. Ambient Falling Petals (🌸 Particles with random sway - Chuẩn Chung Đôi Demo)
-function initAmbientPetals() {
-  if (!ambientPetalsLayer) return;
-  const particleColors = ['#d4e4a0', '#c8d88a', '#ffffff', '#eef4d0'];
-  const count = 16;
-
-  for (let i = 0; i < count; i++) {
-    const el = document.createElement('div');
-    el.className = 'ambient-falling-particle';
-    el.textContent = '🌸';
-    el.style.left = `${Math.random() * 92 + 4}%`;
-    el.style.color = particleColors[Math.floor(Math.random() * particleColors.length)];
-    el.style.fontSize = `${13 + Math.random() * 11}px`;
-    el.style.setProperty('--sway', `${(Math.random() - 0.5) * 60}px`);
-    
-    const duration = 18 + Math.random() * 8;
-    const delay = -(Math.random() * 20);
-    el.style.animationDuration = `${duration.toFixed(1)}s`;
-    el.style.animationDelay = `${delay.toFixed(1)}s`;
-    ambientPetalsLayer.appendChild(el);
-  }
-}
-initAmbientPetals();
-
-// 5. Envelope Open Controller
+// 4. Envelope Open Controller
 function openEnvelope() {
   if (!envelopeScreen || envelopeScreen.classList.contains('opened')) return;
   envelopeScreen.classList.add('opened');
@@ -118,7 +93,7 @@ if (openEnvelopeBtn) {
   });
 }
 
-// 6. Floating Music Player Toggle
+// 5. Floating Music Player Toggle
 if (musicToggleBtn && weddingAudio) {
   musicToggleBtn.addEventListener('click', () => {
     if (weddingAudio.paused) {
@@ -132,7 +107,7 @@ if (musicToggleBtn && weddingAudio) {
   });
 }
 
-// 7. Lightbox Gallery Controller
+// 6. Lightbox Gallery Controller
 const lightboxModal = document.getElementById('lightboxModal');
 const lightboxActiveImg = document.getElementById('lightboxActiveImg');
 const lightboxCounter = document.getElementById('lightboxCounter');

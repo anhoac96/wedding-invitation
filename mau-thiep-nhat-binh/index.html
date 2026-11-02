@@ -2472,51 +2472,6 @@
       </div>
     </section>
 
-    <!-- ==========================================================================
-         SECTION 7: SỔ LƯU BÚT (GUESTBOOK)
-         ========================================================================== -->
-    <section class="demo-guestbook-section" aria-label="Sổ lưu bút">
-      <!-- Section 6 Cloud: Trang 6 bên mây bên TRÁI -->
-      <div class="section-cloud-bg-box" aria-hidden="true">
-        <div class="section-cloud-item cloud-left" id="plxSecCloud6" style="top:30px;">
-          <img src="assets/may.webp" alt="" class="section-cloud-img">
-        </div>
-      </div>
-
-      <div class="guestbook-content-layer">
-        <h2 class="demo-heading-red" style="font-size:clamp(26px,5vw,35px);padding-top:0">Sổ lưu bút</h2>
-
-        <button class="btn-send-wish" id="openWishBtn">
-          GỬI LỜI CHÚC
-        </button>
-
-        <div class="wishes-feed" id="wishesFeed">
-          <!-- Live Firebase wishes will be populated here -->
-          <div class="wish-bubble">
-            <div class="wish-author">
-              <span>Gia đình cô Lan</span>
-              <span class="wish-date">Mới đây</span>
-            </div>
-            <div>Chúc hai cháu trăm năm hạnh phúc, gia đình luôn thuận hòa, sớm sinh quý tử!</div>
-          </div>
-          <div class="wish-bubble">
-            <div class="wish-author">
-              <span>Bạn thân chú rể</span>
-              <span class="wish-date">Mới đây</span>
-            </div>
-            <div>Chúc mừng anh bạn đã có một bến đỗ tuyệt vời. Chúc hai bạn trăm năm hạnh phúc!</div>
-          </div>
-          <div class="wish-bubble">
-            <div class="wish-author">
-              <span>Hội bạn thân cô dâu</span>
-              <span class="wish-date">Mới đây</span>
-            </div>
-            <div>Chúc cô dâu xinh đẹp nhất hôm nay luôn ngập tràn niềm vui và bình yên bên người bạn đời!</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Footer -->
     <footer class="demo-footer">
       <p style="margin-top:6px;font-size:12px;opacity:0.8">Ngọc Anh &amp; Ngọc An • 2027</p>
@@ -2534,29 +2489,6 @@
        MODALS: RSVP, GỬI LỜI CHÚC, HỘP QUÀ MỪNG, LIGHTBOX
        ========================================================================== -->
 
-  <!-- 2. Wish Modal -->
-  <div class="modal-overlay" id="wishModal">
-    <div class="modal-box">
-      <button class="modal-close-btn" data-close="wishModal">&times;</button>
-      <h3 class="modal-title">Gửi Lời Chúc Phúc</h3>
-
-      <form id="wishForm">
-        <div class="form-group">
-          <label for="wishName">Tên của bạn</label>
-          <input type="text" id="wishName" class="form-input" placeholder="Bạn thân cô dâu / chú rể..." required>
-        </div>
-
-        <div class="form-group">
-          <label for="wishContent">Lời chúc của bạn</label>
-          <textarea id="wishContent" class="form-textarea" rows="4"
-            placeholder="Chúc hai bạn trăm năm hạnh phúc, vẹn tròn yêu thương..." required></textarea>
-        </div>
-
-        <button type="submit" class="form-submit-btn" id="btnSubmitWish">GỬI LỜI CHÚC</button>
-      </form>
-    </div>
-  </div>
-
   <!-- 4. Lightbox Modal -->
   <div class="lightbox-modal" id="lightboxModal">
     <button class="lightbox-close-btn" id="closeLightboxBtn">&times;</button>
@@ -2567,73 +2499,6 @@
       <img src="../anh/1.jpg" alt="Ảnh cưới phóng to" class="lightbox-img" id="lightboxActiveImg">
     </div>
   </div>
-
-  <!-- ==========================================================================
-       FIREBASE FIRESTORE SCRIPT (REALTIME GUESTBOOK)
-       ========================================================================== -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
-
-    try {
-      const app = initializeApp({
-        apiKey: "AIzaSyCjkdB-nz1EZPcyh-4rubhsj1UrJnAmvQ0",
-        authDomain: "wedding-invitation-77d87.firebaseapp.com",
-        projectId: "wedding-invitation-77d87",
-        storageBucket: "wedding-invitation-77d87.firebasestorage.app",
-        messagingSenderId: "466072678542",
-        appId: "1:466072678542:web:f120acc6652aabe57299df",
-        measurementId: "G-66B376HWFC"
-      });
-
-      const db = getFirestore(app);
-      const wishesRef = collection(db, "loi-chuc");
-      const wishesFeed = document.getElementById("wishesFeed");
-
-      // Listen to Realtime Wishes
-      const q = query(wishesRef, orderBy("timestamp", "desc"));
-      onSnapshot(q, (snapshot) => {
-        if (!snapshot.empty) {
-          wishesFeed.innerHTML = "";
-          snapshot.forEach((doc) => {
-            const data = doc.data();
-            const dateStr = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString('vi-VN') : 'Vừa xong';
-            const bubble = document.createElement("div");
-            bubble.className = "wish-bubble";
-            bubble.innerHTML = `
-              <div class="wish-author">
-                <span>${escapeHtml(data.name || 'Người thương')}</span>
-                <span class="wish-date">${dateStr}</span>
-              </div>
-              <div>${escapeHtml(data.content || '')}</div>
-            `;
-            wishesFeed.appendChild(bubble);
-          });
-        }
-      }, (err) => {
-        console.warn("Firestore snapshot error, using local fallback:", err);
-      });
-
-      // Submit Wish Handler via Firebase
-      window.submitWishFirebase = async (name, content) => {
-        await addDoc(wishesRef, {
-          name: name,
-          content: content,
-          timestamp: serverTimestamp()
-        });
-      };
-    } catch (e) {
-      console.warn("Firebase initialization failed, falling back to local storage:", e);
-    }
-
-    function escapeHtml(str) {
-      return str.replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
-  </script>
 
   <!-- ==========================================================================
        PAGE INTERACTION SCRIPT
@@ -2677,11 +2542,6 @@
         }
       }
 
-      // Tự động điền tên vào ô gửi lời chúc (Wishbook)
-      const wishNameInput = document.getElementById('wishName');
-      if (wishNameInput && !wishNameInput.value) {
-        wishNameInput.value = decodedGuest;
-      }
     } else {
       // Mặc định dùng chung
       if (guestEl) guestEl.textContent = 'QUÝ KHÁCH';
@@ -2770,8 +2630,7 @@
       document.getElementById('plxSecCloud2'),
       document.getElementById('plxSecCloud3'),
       document.getElementById('plxSecCloud4'),
-      document.getElementById('plxSecCloud5'),
-      document.getElementById('plxSecCloud6')
+      document.getElementById('plxSecCloud5')
     ];
 
     let ticking = false;
@@ -2877,8 +2736,6 @@
       if (m) m.classList.remove('active');
     }
 
-    document.getElementById('openWishBtn').addEventListener('click', () => openModal('wishModal'));
-
     document.querySelectorAll('.modal-close-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const modalId = btn.getAttribute('data-close');
@@ -2894,50 +2751,6 @@
       });
     });
 
-    // Wish Form Submission
-    document.getElementById('wishForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const author = document.getElementById('wishName').value.trim();
-      const content = document.getElementById('wishContent').value.trim();
-
-      if (!author || !content) return;
-
-      if (window.submitWishFirebase) {
-        try {
-          await window.submitWishFirebase(author, content);
-        } catch (err) {
-          console.warn("Could not save to Firebase, prepending locally:", err);
-          appendLocalWish(author, content);
-        }
-      } else {
-        appendLocalWish(author, content);
-      }
-
-      alert('Cảm ơn bạn đã gửi lời chúc tốt đẹp tới cô dâu và chú rể!');
-      document.getElementById('wishForm').reset();
-      closeModal('wishModal');
-    });
-
-    function appendLocalWish(author, content) {
-      const bubble = document.createElement('div');
-      bubble.className = 'wish-bubble';
-      bubble.innerHTML = `
-        <div class="wish-author">
-          <span>${escapeHtml(author)}</span>
-          <span class="wish-date">Vừa xong</span>
-        </div>
-        <div>${escapeHtml(content)}</div>
-      `;
-      document.getElementById('wishesFeed').prepend(bubble);
-    }
-
-    function escapeHtml(str) {
-      return str.replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
   </script>
 </body>
 

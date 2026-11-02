@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <!-- Soft watercolor petal gradient -->
+    <linearGradient id="petalGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#faf5ed" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#e8dcce" stop-opacity="0.75"/>
+    </linearGradient>
+
+    <linearGradient id="petalGradPink" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#f5ede2"/>
+      <stop offset="100%" stop-color="#ddc8b6"/>
+    </linearGradient>
+
+    <!-- Olive leaf gradient -->
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#829476"/>
+      <stop offset="60%" stop-color="#5a6c52"/>
+      <stop offset="100%" stop-color="#3d4d36"/>
+    </linearGradient>
+
+    <!-- Branch gradient -->
+    <linearGradient id="branchGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7a6c58"/>
+      <stop offset="100%" stop-color="#4e4334"/>
+    </linearGradient>
+
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <g transform="translate(40, 20)">
+    <!-- Main undulating woody stem -->
+    <path d="M 60 420 Q 140 340, 210 260 T 320 140 T 400 60" 
+          fill="none" stroke="url(#branchGrad)" stroke-width="5" stroke-linecap="round"/>
+    
+    <!-- Secondary side twigs -->
+    <path d="M 180 290 Q 140 240, 110 210" fill="none" stroke="url(#branchGrad)" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M 270 190 Q 300 130, 310 100" fill="none" stroke="url(#branchGrad)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 230 240 Q 280 270, 320 290" fill="none" stroke="url(#branchGrad)" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Olive Leaves along branches -->
+    <!-- Leaf 1 -->
+    <path d="M 110 210 Q 70 190, 60 160 Q 90 170, 110 210 Z" fill="url(#leafGrad)" opacity="0.9"/>
+    <!-- Leaf 2 -->
+    <path d="M 130 230 Q 160 190, 175 160 Q 155 195, 130 230 Z" fill="url(#leafGrad)" opacity="0.85"/>
+    <!-- Leaf 3 -->
+    <path d="M 200 270 Q 230 230, 240 200 Q 225 240, 200 270 Z" fill="url(#leafGrad)" opacity="0.9"/>
+    <!-- Leaf 4 -->
+    <path d="M 280 270 Q 330 275, 360 260 Q 325 285, 280 270 Z" fill="url(#leafGrad)" opacity="0.88"/>
+    <!-- Leaf 5 -->
+    <path d="M 310 285 Q 340 320, 365 340 Q 330 325, 310 285 Z" fill="url(#leafGrad)" opacity="0.85"/>
+    <!-- Leaf 6 (Near top) -->
+    <path d="M 360 100 Q 400 80, 430 75 Q 395 105, 360 100 Z" fill="url(#leafGrad)" opacity="0.82"/>
+
+    <!-- Flower 1: Full Blooming White Magnolia (Center left) -->
+    <g transform="translate(160, 210) scale(1.1)">
+      <!-- Back Petals -->
+      <path d="M 0 0 C -40 -30, -50 -80, -20 -110 C 10 -90, 15 -40, 0 0 Z" fill="url(#petalGrad1)" stroke="#d9cdbe" stroke-width="0.8"/>
+      <path d="M 0 0 C 30 -30, 55 -70, 40 -110 C 10 -90, -5 -40, 0 0 Z" fill="url(#petalGrad1)" stroke="#d9cdbe" stroke-width="0.8"/>
+      <path d="M 0 0 C -15 -50, -10 -105, 10 -120 C 25 -100, 20 -50, 0 0 Z" fill="url(#petalGradPink)" stroke="#d9cdbe" stroke-width="0.8"/>
+
+      <!-- Mid Petals -->
+      <path d="M 0 0 C -35 -20, -55 -55, -45 -85 C -20 -70, -10 -35, 0 0 Z" fill="url(#petalGradPink)" stroke="#ded2c3" stroke-width="0.8"/>
+      <path d="M 0 0 C 25 -15, 50 -45, 45 -80 C 25 -65, 10 -30, 0 0 Z" fill="url(#petalGradPink)" stroke="#ded2c3" stroke-width="0.8"/>
+
+      <!-- Front cup petals -->
+      <path d="M 0 0 C -20 -15, -30 -40, -15 -65 C 5 -55, 10 -25, 0 0 Z" fill="#ffffff" stroke="#ded2c3" stroke-width="0.8"/>
+      <path d="M 0 0 C 15 -15, 25 -40, 10 -65 C -5 -55, -10 -25, 0 0 Z" fill="#ffffff" stroke="#ded2c3" stroke-width="0.8"/>
+
+      <!-- Flower Center Stamen -->
+      <ellipse cx="0" cy="-28" rx="5" ry="12" fill="#c49a45" opacity="0.85"/>
+      <circle cx="-3" cy="-35" r="2.5" fill="#e8c872"/>
+      <circle cx="3" cy="-33" r="2" fill="#e8c872"/>
+      <circle cx="0" cy="-38" r="2.5" fill="#ebd288"/>
+    </g>
+
+    <!-- Flower 2: Side Blossom (Center right) -->
+    <g transform="translate(300, 150) rotate(25) scale(0.85)">
+      <path d="M 0 0 C -35 -20, -45 -65, -15 -85 C 5 -70, 10 -30, 0 0 Z" fill="url(#petalGrad1)" stroke="#d9cdbe" stroke-width="0.8"/>
+      <path d="M 0 0 C 20 -20, 35 -60, 20 -85 C 0 -70, -5 -30, 0 0 Z" fill="url(#petalGradPink)" stroke="#d9cdbe" stroke-width="0.8"/>
+      <path d="M 0 0 C -15 -35, -5 -75, 5 -85 C 15 -70, 10 -35, 0 0 Z" fill="#ffffff" stroke="#ded2c3" stroke-width="0.8"/>
+      <ellipse cx="0" cy="-20" rx="4" ry="9" fill="#c49a45" opacity="0.85"/>
+    </g>
+
+    <!-- Flower 3: Delicate Bud (Top right) -->
+    <g transform="translate(390, 75) rotate(45) scale(0.65)">
+      <path d="M 0 0 C -15 -15, -20 -40, -5 -55 C 8 -45, 5 -20, 0 0 Z" fill="url(#petalGradPink)" stroke="#d9cdbe" stroke-width="0.8"/>
+      <path d="M 0 0 C 15 -15, 18 -40, 5 -55 C -5 -45, -2 -20, 0 0 Z" fill="#ffffff" stroke="#ded2c3" stroke-width="0.8"/>
+      <!-- Calyx -->
+      <path d="M -8 2 C -5 -10, 5 -10, 8 2 Z" fill="#5a6c52"/>
+    </g>
+  </g>
+</svg>
+

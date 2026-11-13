@@ -16,11 +16,11 @@
   <meta property="og:image" content="../anh/1.jpg">
   <meta property="og:type" content="website">
 
-  <!-- Google Fonts: Viaoda Libre (ChungDoi Authentic Couple Font), EB Garamond, Cormorant Garamond, Alex Brush, Ms Madi -->
+  <!-- Google Fonts Fallback & Local Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600;700&family=Ms+Madi&family=Viaoda+Libre&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600;700&family=Ms+Madi&family=Viaoda+Libre&display=swap"
     rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
@@ -35,12 +35,8 @@
 
   <!-- ==========================================================================
        1. ENVELOPE SCREEN (CHUNG ĐÔI 100% AUTHENTIC)
-       Background: #eef3e8 url(assets/floral-background.webp) center / 180% auto repeat
-       Overlay: blur(8px) saturate(1.05) + white tint rgba(255,255,255,0.12)
-       Card: rgba(255, 255, 255, 0.3) blur(6px) + flower2 at top-left and bottom-right
        ========================================================================== -->
   <div class="envelope-screen" id="envelopeScreen">
-    <!-- Blurred backdrop layer over floral background -->
     <div class="envelope-backdrop-filter" aria-hidden="true"></div>
 
     <!-- Envelope Center Card Container -->
@@ -104,15 +100,12 @@
 
   <!-- ==========================================================================
        2. MAIN INVITATION VIEWPORT & CARD
-       Background: #eef3e8 url(assets/floral-background.webp) 180% auto repeat
-       Card: Max-width 480px (mobile) / 540px (tablet/desktop) centered
        ========================================================================== -->
   <main class="main-invitation-viewport" id="mainInvitation">
     <div class="glass-garden-card">
 
       <!-- ==========================================================================
-           HERO SECTION: OVAL ARCH GLASS CARD (Aspect 239/368, rounded-[500px])
-           Flower 1 overlapping bottom (translate-y-[46%], width 135%)
+           HERO SECTION: OVAL ARCH GLASS CARD
            ========================================================================== -->
       <section class="hero-oval-section" aria-label="Đầu thiệp cưới">
         <div class="hero-oval-wrapper">
@@ -129,8 +122,7 @@
       </section>
 
       <!-- ==========================================================================
-           MAIN CONTENT BIG GLASS CONTAINER (rounded-[30px], backdrop-filter blur)
-           Flower 2 placed on top-right (-top-[58px] -right-[40px] rotate-[-15.78deg])
+           MAIN CONTENT BIG GLASS CONTAINER
            ========================================================================== -->
       <div class="main-glass-panel-wrapper">
 
@@ -227,31 +219,7 @@
           </section>
 
           <!-- ==========================================================================
-               SECTION: ALBUM ẢNH
-               ========================================================================== -->
-          <section class="gallery-section" aria-label="Album ảnh cưới">
-            <h2 class="section-h2-title">ALBUM ẢNH</h2>
-
-            <div class="gallery-cards-grid">
-              <div class="gallery-card-item" data-index="0">
-                <img src="../anh/1.jpg" alt="Ảnh cưới 1" loading="lazy">
-              </div>
-              <div class="gallery-card-item" data-index="1">
-                <img src="../anh/2.jpg" alt="Ảnh cưới 2" loading="lazy">
-              </div>
-              <div class="gallery-card-item" data-index="2">
-                <img src="../anh/3.jpg" alt="Ảnh cưới 3" loading="lazy">
-              </div>
-              <div class="gallery-card-item" data-index="3">
-                <img src="../anh/4.jpg" alt="Ảnh cưới 4" loading="lazy">
-                <div class="gallery-more-overlay">+ 5</div>
-              </div>
-            </div>
-          </section>
-
-          <!-- ==========================================================================
-               SECTION: TIỆC CƯỚI (RECEPTION & COUNTDOWN)
-               Flower 3 placed on right side (rotate-[-2.67deg] scaleX(-1))
+               SECTION: TIỆC CƯỚI (RECEPTION)
                ========================================================================== -->
           <section class="party-reception-section" aria-label="Thông tin tiệc cưới">
             <!-- Flower 3 on Right Side of Party Section -->
@@ -283,40 +251,28 @@
                   <div class="schedule-val">16:30</div>
                 </div>
               </div>
+            </div>
+          </section>
 
-              <!-- Calendar Box with Heart Highlight -->
-              <div class="mini-calendar-box">
-                <div class="mini-calendar-header">THÁNG 1 / 2027</div>
-                <div class="mini-calendar-days">
-                  <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
-                </div>
-                <div class="mini-calendar-grid">
-                  <!-- Jan 2027 starts on Friday (day 1) -->
-                  <span class="cal-empty"></span><span class="cal-empty"></span><span class="cal-empty"></span><span class="cal-empty"></span>
-                  <span>1</span><span>2</span><span>3</span>
-                  <span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
-                  <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
-                  <!-- Highlight Day 16 (Tiệc cưới & Lễ nạp tài) -->
-                  <span class="cal-highlight cal-day-16" title="16/01: Lễ Nạp Tài & Tiệc Cưới">16</span>
-                  <!-- Highlight Day 17 (Lễ thành hôn) with Calendar Heart -->
-                  <span class="cal-highlight-heart cal-day-17" title="17/01: Lễ Thành Hôn">
-                    <img src="assets/calendar-heart.webp" alt="" class="cal-heart-img">
-                    <span class="cal-heart-num">17</span>
-                  </span>
-                  <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
-                  <span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
-                </div>
+          <!-- ==========================================================================
+               SECTION: ALBUM ẢNH
+               ========================================================================== -->
+          <section class="gallery-section" aria-label="Album ảnh cưới">
+            <h2 class="section-h2-title">ALBUM ẢNH</h2>
+
+            <div class="gallery-cards-grid">
+              <div class="gallery-card-item" data-index="0">
+                <img src="../anh/1.jpg" alt="Ảnh cưới 1" loading="lazy">
               </div>
-
-              <!-- Countdown Box -->
-              <div class="countdown-container">
-                <p class="countdown-title">CÙNG ĐẾM NGƯỢC THỜI GIAN</p>
-                <div class="countdown-boxes">
-                  <div class="cd-box"><span class="cd-val" id="cdDays">00</span><span class="cd-txt">Ngày</span></div>
-                  <div class="cd-box"><span class="cd-val" id="cdHours">00</span><span class="cd-txt">Giờ</span></div>
-                  <div class="cd-box"><span class="cd-val" id="cdMins">00</span><span class="cd-txt">Phút</span></div>
-                  <div class="cd-box"><span class="cd-val" id="cdSecs">00</span><span class="cd-txt">Giây</span></div>
-                </div>
+              <div class="gallery-card-item" data-index="1">
+                <img src="../anh/2.jpg" alt="Ảnh cưới 2" loading="lazy">
+              </div>
+              <div class="gallery-card-item" data-index="2">
+                <img src="../anh/3.jpg" alt="Ảnh cưới 3" loading="lazy">
+              </div>
+              <div class="gallery-card-item" data-index="3">
+                <img src="../anh/4.jpg" alt="Ảnh cưới 4" loading="lazy">
+                <div class="gallery-more-overlay">+ 5</div>
               </div>
             </div>
           </section>
@@ -359,46 +315,6 @@
           </section>
 
           <!-- ==========================================================================
-               SECTION: TIMELINE CHƯƠNG TRÌNH
-               Icons: welcome.webp, cake.webp, dish.webp
-               Flower 4 on bottom left of timeline
-               ========================================================================== -->
-          <div class="timeline-wrapper-isolate">
-            <!-- Flower 4 Bottom-Left of Timeline -->
-            <img src="assets/flower4-decoration.webp" alt="" class="flower4-timeline-accent" aria-hidden="true">
-
-            <section class="timeline-section" aria-label="Lịch trình lễ cưới">
-              <h2 class="section-h2-title">LỊCH TRÌNH</h2>
-
-              <div class="timeline-events-list">
-                <div class="timeline-item">
-                  <img src="assets/welcome.webp" alt="" class="timeline-icon-img">
-                  <div class="timeline-details">
-                    <span class="timeline-time">16:00</span>
-                    <span class="timeline-label">Đón Khách &amp; Chụp Ảnh Lưu Niệm</span>
-                  </div>
-                </div>
-
-                <div class="timeline-item">
-                  <img src="assets/cake.webp" alt="" class="timeline-icon-img">
-                  <div class="timeline-details">
-                    <span class="timeline-time">16:30</span>
-                    <span class="timeline-label">Khai Tiệc &amp; Nghi Thức Thành Hôn</span>
-                  </div>
-                </div>
-
-                <div class="timeline-item">
-                  <img src="assets/dish.webp" alt="" class="timeline-icon-img">
-                  <div class="timeline-details">
-                    <span class="timeline-time">17:00</span>
-                    <span class="timeline-label">Dùng Tiệc Thân Mật &amp; Giao Lưu Âm Nhạc</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          <!-- ==========================================================================
                FOOTER: LỜI CẢM ƠN
                ========================================================================== -->
           <footer class="glass-garden-footer" aria-label="Lời cảm ơn">
@@ -411,7 +327,7 @@
             <p class="footer-couple-script groom-name-display bride-name-display">Ngọc Anh &amp; Ngọc An</p>
           </footer>
 
-          <!-- Flower 5 at Bottom of Main Glass Panel (width 150%, translate-y-1/2) -->
+          <!-- Flower 5 at Bottom of Main Glass Panel -->
           <img src="assets/flower5-bottom.webp" alt="" class="flower5-bottom-card" aria-hidden="true">
 
         </div><!-- /main-glass-panel -->

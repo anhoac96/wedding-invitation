@@ -107,41 +107,7 @@ if (musicToggleBtn && weddingAudio) {
   });
 }
 
-// 6. Countdown Timer (Target: 2027-01-16 16:30:00)
-const weddingDate = new Date('2027-01-16T16:30:00+07:00').getTime();
-
-function updateCountdown() {
-  const now = new Date().getTime();
-  const diff = weddingDate - now;
-
-  if (diff <= 0) {
-    document.getElementById('cdDays').textContent = '00';
-    document.getElementById('cdHours').textContent = '00';
-    document.getElementById('cdMins').textContent = '00';
-    document.getElementById('cdSecs').textContent = '00';
-    return;
-  }
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-  const dEl = document.getElementById('cdDays');
-  const hEl = document.getElementById('cdHours');
-  const mEl = document.getElementById('cdMins');
-  const sEl = document.getElementById('cdSecs');
-
-  if (dEl) dEl.textContent = days < 10 ? '0' + days : days;
-  if (hEl) hEl.textContent = hours < 10 ? '0' + hours : hours;
-  if (mEl) mEl.textContent = minutes < 10 ? '0' + minutes : minutes;
-  if (sEl) sEl.textContent = seconds < 10 ? '0' + seconds : seconds;
-}
-
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-// 7. Lightbox Gallery Controller
+// 6. Lightbox Gallery Controller
 const lightboxModal = document.getElementById('lightboxModal');
 const lightboxActiveImg = document.getElementById('lightboxActiveImg');
 const lightboxCounter = document.getElementById('lightboxCounter');

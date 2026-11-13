@@ -1,0 +1,271 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Watercolor filters -->
+    <filter id="blur-soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5"/>
+    </filter>
+    <filter id="blur-leaf" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="1.8"/>
+    </filter>
+    <filter id="blur-bg" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="blur-petal" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+    <filter id="watercolor" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <!-- Gradients -->
+    <radialGradient id="bg-main" cx="45%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#c8dbc4"/>
+      <stop offset="35%" stop-color="#a8c5a0"/>
+      <stop offset="65%" stop-color="#7aab7a"/>
+      <stop offset="100%" stop-color="#4a7c59"/>
+    </radialGradient>
+    <radialGradient id="bg-light" cx="30%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#e8f0e4" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#b5ccad" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bg-light2" cx="75%" cy="70%" r="45%">
+      <stop offset="0%" stop-color="#d4e8d0" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#8aad88" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Magnolia white petal gradient -->
+    <radialGradient id="petal-white" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#fafff8"/>
+      <stop offset="50%" stop-color="#f0f7ec"/>
+      <stop offset="100%" stop-color="#d8ead4"/>
+    </radialGradient>
+    <radialGradient id="petal-white2" cx="50%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#fffefa"/>
+      <stop offset="45%" stop-color="#f5faf2"/>
+      <stop offset="100%" stop-color="#ddefdb"/>
+    </radialGradient>
+    <radialGradient id="petal-cream" cx="35%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#fffff5"/>
+      <stop offset="60%" stop-color="#f8f8e8"/>
+      <stop offset="100%" stop-color="#e0dfc0"/>
+    </radialGradient>
+
+    <!-- Pink flower gradient -->
+    <radialGradient id="petal-pink" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#f9d8da"/>
+      <stop offset="50%" stop-color="#f0b8bc"/>
+      <stop offset="100%" stop-color="#d890a0"/>
+    </radialGradient>
+    <radialGradient id="petal-pink2" cx="50%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#fce8ea"/>
+      <stop offset="60%" stop-color="#f4c8cc"/>
+      <stop offset="100%" stop-color="#e0a0a8"/>
+    </radialGradient>
+
+    <!-- Leaf gradients -->
+    <linearGradient id="leaf-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d5a3d"/>
+      <stop offset="50%" stop-color="#3d7a50"/>
+      <stop offset="100%" stop-color="#2a4d35"/>
+    </linearGradient>
+    <linearGradient id="leaf-mid" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a8a5c"/>
+      <stop offset="50%" stop-color="#5aaa70"/>
+      <stop offset="100%" stop-color="#3d7a50"/>
+    </linearGradient>
+    <linearGradient id="leaf-light" x1="0%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#6aaa7a"/>
+      <stop offset="100%" stop-color="#4a8060"/>
+    </linearGradient>
+  </defs>
+
+  <!-- BASE BACKGROUND: soft sage green watercolor wash -->
+  <rect width="1200" height="900" fill="url(#bg-main)"/>
+  <rect width="1200" height="900" fill="url(#bg-light)"/>
+  <rect width="1200" height="900" fill="url(#bg-light2)"/>
+
+  <!-- Soft background texture blobs -->
+  <ellipse cx="200" cy="300" rx="300" ry="250" fill="#8aad88" opacity="0.3" filter="url(#blur-bg)"/>
+  <ellipse cx="1000" cy="600" rx="280" ry="220" fill="#6a9a78" opacity="0.25" filter="url(#blur-bg)"/>
+  <ellipse cx="600" cy="450" rx="400" ry="300" fill="#c8e0c0" opacity="0.2" filter="url(#blur-bg)"/>
+  <ellipse cx="100" cy="700" rx="200" ry="180" fill="#5a8a60" opacity="0.3" filter="url(#blur-bg)"/>
+  <ellipse cx="1100" cy="200" rx="220" ry="200" fill="#7aaa80" opacity="0.2" filter="url(#blur-bg)"/>
+
+  <!-- ================================================================
+       LARGE GREEN LEAVES - Background layer
+       ================================================================ -->
+  <!-- Big leaf top-center / right of center -->
+  <g filter="url(#blur-leaf)" opacity="0.85">
+    <path d="M650 -30 Q820 80 780 220 Q740 360 650 400 Q560 360 520 220 Q480 80 650 -30Z" fill="url(#leaf-dark)"/>
+    <path d="M650 -30 Q700 120 680 260 Q660 360 650 400 Q640 360 620 260 Q600 120 650 -30Z" fill="#2a5038" opacity="0.4"/>
+  </g>
+  <!-- Leaf stem -->
+  <line x1="650" y1="400" x2="650" y2="500" stroke="#1e3d28" stroke-width="4" opacity="0.6"/>
+
+  <!-- Big leaf left side, tilted -->
+  <g filter="url(#blur-leaf)" opacity="0.9">
+    <path d="M-60 400 Q100 300 220 380 Q340 460 300 580 Q260 700 120 680 Q-20 660 -60 400Z" fill="url(#leaf-dark)"/>
+    <path d="M-60 400 Q60 380 140 440 Q220 500 200 600 Q180 680 100 660 Q20 640 -60 400Z" fill="#1e3d28" opacity="0.35"/>
+    <!-- Leaf vein -->
+    <path d="M-60 400 Q130 490 300 580" stroke="#1a3022" stroke-width="2.5" fill="none" opacity="0.5"/>
+  </g>
+
+  <!-- Large leaf bottom-left -->
+  <g filter="url(#blur-leaf)" opacity="0.8">
+    <path d="M-80 700 Q80 580 200 640 Q320 700 280 820 Q240 940 80 920 Q-80 900 -80 700Z" fill="url(#leaf-mid)"/>
+    <path d="M-80 700 Q40 680 120 740 Q200 800 180 880 Q160 940 60 920 Q-40 900 -80 700Z" fill="#2d5540" opacity="0.4"/>
+  </g>
+
+  <!-- Big leaf right side -->
+  <g filter="url(#blur-leaf)" opacity="0.85">
+    <path d="M1180 180 Q1060 120 980 230 Q900 340 960 460 Q1020 580 1120 540 Q1220 500 1180 180Z" fill="url(#leaf-dark)"/>
+    <path d="M1180 180 Q1100 200 1060 300 Q1020 400 1060 480 Q1100 540 1140 520 Q1180 500 1180 180Z" fill="#1e3822" opacity="0.35"/>
+  </g>
+
+  <!-- Medium leaves scattered -->
+  <g filter="url(#blur-leaf)" opacity="0.75">
+    <path d="M800 820 Q920 740 1000 800 Q1080 860 1040 940 Q1000 1020 880 980 Q760 940 800 820Z" fill="url(#leaf-mid)"/>
+  </g>
+  <g filter="url(#blur-leaf)" opacity="0.7">
+    <path d="M100 -20 Q220 60 200 170 Q180 280 80 280 Q-20 280 -40 170 Q-60 60 100 -20Z" fill="url(#leaf-mid)"/>
+  </g>
+  <g filter="url(#blur-leaf)" opacity="0.65">
+    <path d="M900 -10 Q1020 50 1000 160 Q980 270 880 270 Q780 270 760 160 Q740 50 900 -10Z" fill="url(#leaf-dark)"/>
+  </g>
+
+  <!-- Thin diagonal branch -->
+  <path d="M300 -40 Q440 120 520 300 Q600 480 580 620" stroke="#2a4a30" stroke-width="6" fill="none" opacity="0.5" filter="url(#blur-leaf)"/>
+  <path d="M700 -20 Q780 100 820 250 Q860 400 840 550" stroke="#2a4a30" stroke-width="4" fill="none" opacity="0.35" filter="url(#blur-leaf)"/>
+
+  <!-- ================================================================
+       LARGE WHITE MAGNOLIA FLOWERS - LEFT SIDE
+       ================================================================ -->
+  <!-- Main big magnolia, bottom-left, partially cropped -->
+  <g filter="url(#blur-petal)" opacity="0.92">
+    <!-- Petals of large magnolia -->
+    <ellipse cx="150" cy="700" rx="130" ry="60" fill="url(#petal-white)" transform="rotate(-20 150 700)"/>
+    <ellipse cx="80" cy="660" rx="130" ry="60" fill="url(#petal-white2)" transform="rotate(10 80 660)"/>
+    <ellipse cx="180" cy="630" rx="120" ry="55" fill="url(#petal-cream)" transform="rotate(-50 180 630)"/>
+    <ellipse cx="80" cy="750" rx="130" ry="58" fill="url(#petal-white)" transform="rotate(30 80 750)"/>
+    <ellipse cx="230" cy="760" rx="115" ry="52" fill="url(#petal-white2)" transform="rotate(-70 230 760)"/>
+    <ellipse cx="10" cy="700" rx="120" ry="55" fill="url(#petal-cream)" transform="rotate(-10 10 700)"/>
+    <!-- Center -->
+    <ellipse cx="130" cy="700" rx="38" ry="35" fill="#f5f8e0" opacity="0.9"/>
+    <ellipse cx="130" cy="700" rx="22" ry="20" fill="#e8e8a0" opacity="0.7"/>
+    <ellipse cx="130" cy="700" rx="10" ry="9" fill="#d4c060" opacity="0.8"/>
+  </g>
+
+  <!-- Second magnolia - top left, partially cropped -->
+  <g filter="url(#blur-soft)" opacity="0.88">
+    <ellipse cx="-20" cy="180" rx="140" ry="65" fill="url(#petal-white2)" transform="rotate(15 -20 180)"/>
+    <ellipse cx="80" cy="130" rx="135" ry="62" fill="url(#petal-white)" transform="rotate(-25 80 130)"/>
+    <ellipse cx="120" cy="220" rx="130" ry="60" fill="url(#petal-cream)" transform="rotate(-55 120 220)"/>
+    <ellipse cx="-10" cy="260" rx="120" ry="58" fill="url(#petal-white2)" transform="rotate(40 -10 260)"/>
+    <ellipse cx="160" cy="150" rx="125" ry="55" fill="url(#petal-white)" transform="rotate(-10 160 150)"/>
+    <ellipse cx="40" cy="90" rx="115" ry="50" fill="url(#petal-cream)" transform="rotate(5 40 90)"/>
+    <!-- Center -->
+    <ellipse cx="70" cy="185" rx="36" ry="33" fill="#f5f8e0" opacity="0.9"/>
+    <ellipse cx="70" cy="185" rx="20" ry="18" fill="#eae898" opacity="0.7"/>
+  </g>
+
+  <!-- Third white flower - bottom left smaller -->
+  <g filter="url(#blur-petal)" opacity="0.85">
+    <ellipse cx="300" cy="860" rx="100" ry="46" fill="url(#petal-white)" transform="rotate(-30 300 860)"/>
+    <ellipse cx="230" cy="830" rx="100" ry="46" fill="url(#petal-white2)" transform="rotate(5 230 830)"/>
+    <ellipse cx="350" cy="830" rx="95" ry="44" fill="url(#petal-cream)" transform="rotate(-60 350 830)"/>
+    <ellipse cx="250" cy="880" rx="98" ry="45" fill="url(#petal-white)" transform="rotate(20 250 880)"/>
+    <ellipse cx="380" cy="870" rx="90" ry="42" fill="url(#petal-white2)" transform="rotate(-45 380 870)"/>
+    <ellipse cx="290" cy="790" rx="95" ry="43" fill="url(#petal-cream)" transform="rotate(-15 290 790)"/>
+    <!-- Center -->
+    <ellipse cx="295" cy="845" rx="30" ry="28" fill="#f8f8e5" opacity="0.9"/>
+    <ellipse cx="295" cy="845" rx="16" ry="15" fill="#e5e080" opacity="0.75"/>
+  </g>
+
+  <!-- ================================================================
+       PINK FLOWERS - RIGHT SIDE (top right corner)
+       ================================================================ -->
+  <!-- Main pink flower top right -->
+  <g filter="url(#blur-soft)" opacity="0.88">
+    <ellipse cx="1120" cy="80" rx="120" ry="55" fill="url(#petal-pink)" transform="rotate(20 1120 80)"/>
+    <ellipse cx="1050" cy="50" rx="115" ry="52" fill="url(#petal-pink2)" transform="rotate(-15 1050 50)"/>
+    <ellipse cx="1160" cy="160" rx="118" ry="53" fill="url(#petal-pink)" transform="rotate(-40 1160 160)"/>
+    <ellipse cx="1030" cy="150" rx="110" ry="50" fill="url(#petal-pink2)" transform="rotate(10 1030 150)"/>
+    <ellipse cx="1100" cy="200" rx="115" ry="52" fill="url(#petal-pink)" transform="rotate(-60 1100 200)"/>
+    <ellipse cx="1200" cy="120" rx="108" ry="49" fill="url(#petal-pink2)" transform="rotate(5 1200 120)"/>
+    <!-- Center -->
+    <ellipse cx="1110" cy="120" rx="34" ry="32" fill="#fce8e8" opacity="0.9"/>
+    <ellipse cx="1110" cy="120" rx="18" ry="17" fill="#f4c0c0" opacity="0.8"/>
+    <ellipse cx="1110" cy="120" rx="8" ry="8" fill="#e89090" opacity="0.9"/>
+  </g>
+
+  <!-- Pink bud top right, smaller -->
+  <g filter="url(#blur-petal)" opacity="0.82">
+    <ellipse cx="1200" cy="300" rx="80" ry="38" fill="url(#petal-pink2)" transform="rotate(-25 1200 300)"/>
+    <ellipse cx="1150" cy="270" rx="82" ry="38" fill="url(#petal-pink)" transform="rotate(10 1150 270)"/>
+    <ellipse cx="1200" cy="360" rx="78" ry="36" fill="url(#petal-pink2)" transform="rotate(-50 1200 360)"/>
+    <!-- Center -->
+    <ellipse cx="1175" cy="310" rx="22" ry="20" fill="#fce0e0" opacity="0.9"/>
+  </g>
+
+  <!-- ================================================================
+       BABY'S BREATH / SMALL WHITE FLOWER CLUSTERS
+       ================================================================ -->
+  <g opacity="0.8">
+    <!-- Cluster 1 - bottom center-left -->
+    <g filter="url(#blur-leaf)" opacity="0.85">
+      <circle cx="380" cy="780" r="12" fill="#f8fff8" opacity="0.9"/>
+      <circle cx="400" cy="765" r="10" fill="#f5fdf5" opacity="0.85"/>
+      <circle cx="365" cy="760" r="9" fill="#f8fff8" opacity="0.8"/>
+      <circle cx="420" cy="780" r="11" fill="#f5fdf5" opacity="0.85"/>
+      <circle cx="395" cy="795" r="10" fill="#f8fff8" opacity="0.8"/>
+      <circle cx="410" cy="755" r="8" fill="#f5fdf5" opacity="0.75"/>
+      <circle cx="350" cy="775" r="9" fill="#f8fff8" opacity="0.8"/>
+      <circle cx="435" cy="760" r="8" fill="#f5fdf5" opacity="0.75"/>
+      <circle cx="370" cy="795" r="10" fill="#f8fff8" opacity="0.8"/>
+      <!-- Stems -->
+      <path d="M395 810 Q388 790 380 780" stroke="#5a8a50" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <path d="M395 810 Q400 788 400 765" stroke="#5a8a50" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <path d="M395 810 Q410 792 420 780" stroke="#5a8a50" stroke-width="1.5" fill="none" opacity="0.5"/>
+    </g>
+    <!-- Small dots for tiny flowers -->
+    <circle cx="385" cy="765" r="3" fill="#ffffff" opacity="0.9"/>
+    <circle cx="405" cy="758" r="2.5" fill="#ffffff" opacity="0.85"/>
+    <circle cx="420" cy="772" r="3" fill="#ffffff" opacity="0.9"/>
+    <circle cx="362" cy="772" r="2.5" fill="#ffffff" opacity="0.85"/>
+    <circle cx="400" cy="782" r="3" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- Baby's breath cluster 2 - right side -->
+  <g opacity="0.75">
+    <g filter="url(#blur-leaf)" opacity="0.8">
+      <circle cx="980" cy="820" r="11" fill="#f8fff8" opacity="0.85"/>
+      <circle cx="1000" cy="808" r="9" fill="#f5fdf5" opacity="0.8"/>
+      <circle cx="968" cy="808" r="9" fill="#f8fff8" opacity="0.8"/>
+      <circle cx="1012" cy="825" r="10" fill="#f5fdf5" opacity="0.8"/>
+      <circle cx="988" cy="835" r="9" fill="#f8fff8" opacity="0.75"/>
+      <circle cx="960" cy="828" r="8" fill="#f5fdf5" opacity="0.75"/>
+    </g>
+  </g>
+
+  <!-- White small flowers bottom right -->
+  <g filter="url(#blur-petal)" opacity="0.78">
+    <ellipse cx="1050" cy="880" rx="45" ry="21" fill="url(#petal-white)" transform="rotate(-20 1050 880)"/>
+    <ellipse cx="1020" cy="860" rx="45" ry="21" fill="url(#petal-white2)" transform="rotate(10 1020 860)"/>
+    <ellipse cx="1070" cy="855" rx="42" ry="20" fill="url(#petal-cream)" transform="rotate(-45 1070 855)"/>
+    <ellipse cx="1030" cy="895" rx="43" ry="20" fill="url(#petal-white)" transform="rotate(25 1030 895)"/>
+    <circle cx="1040" cy="872" r="14" fill="#f5f8e8" opacity="0.8"/>
+  </g>
+
+  <!-- ================================================================
+       SPARKLE / STAR EFFECTS (like in the demo)
+       ================================================================ -->
+  <g opacity="0.5" fill="#ffffff">
+    <text x="240" y="285" font-size="18" text-anchor="middle" opacity="0.6">✦</text>
+    <text x="950" y="420" font-size="14" text-anchor="middle" opacity="0.5">✦</text>
+    <text x="180" y="500" font-size="12" text-anchor="middle" opacity="0.45">✦</text>
+    <text x="1050" y="650" font-size="16" text-anchor="middle" opacity="0.5">✦</text>
+    <text x="880" y="250" font-size="10" text-anchor="middle" opacity="0.4">✦</text>
+    <text x="320" y="600" font-size="11" text-anchor="middle" opacity="0.4">✦</text>
+  </g>
+</svg>

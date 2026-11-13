@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280" fill="none">
+  <defs>
+    <radialGradient id="pw1" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#fafff8"/><stop offset="100%" stop-color="#d8ead4"/>
+    </radialGradient>
+    <radialGradient id="pw2" cx="50%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#fffefa"/><stop offset="100%" stop-color="#ddefdb"/>
+    </radialGradient>
+    <radialGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d5a3d"/><stop offset="100%" stop-color="#3d7a50"/>
+    </radialGradient>
+    <radialGradient id="lg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a8a5c"/><stop offset="100%" stop-color="#5aaa70"/>
+    </radialGradient>
+    <filter id="sf"><feGaussianBlur stdDeviation="1.8"/></filter>
+    <filter id="sf2"><feGaussianBlur stdDeviation="1.2"/></filter>
+  </defs>
+
+  <!-- === LEFT SIDE: Large magnolia + baby's breath === -->
+
+  <!-- Big dark leaf left -->
+  <ellipse cx="50" cy="200" rx="90" ry="45" fill="#2d5a3d" opacity="0.85" transform="rotate(-30 50 200)" filter="url(#sf)"/>
+  <ellipse cx="90" cy="170" rx="80" ry="38" fill="#3d7a50" opacity="0.75" transform="rotate(-45 90 170)" filter="url(#sf)"/>
+  <ellipse cx="20" cy="240" rx="85" ry="40" fill="#264e35" opacity="0.8" transform="rotate(-15 20 240)" filter="url(#sf)"/>
+
+  <!-- Medium leaf left -->
+  <ellipse cx="140" cy="250" rx="70" ry="32" fill="#4a8a5c" opacity="0.7" transform="rotate(-55 140 250)" filter="url(#sf)"/>
+
+  <!-- Large white magnolia left -->
+  <g filter="url(#sf2)" opacity="0.95">
+    <ellipse cx="80" cy="180" rx="68" ry="32" fill="url(#pw1)" transform="rotate(-15 80 180)"/>
+    <ellipse cx="30" cy="160" rx="65" ry="30" fill="url(#pw2)" transform="rotate(10 30 160)"/>
+    <ellipse cx="110" cy="150" rx="62" ry="28" fill="url(#pw1)" transform="rotate(-40 110 150)"/>
+    <ellipse cx="40" cy="210" rx="64" ry="30" fill="url(#pw2)" transform="rotate(25 40 210)"/>
+    <ellipse cx="130" cy="210" rx="60" ry="28" fill="url(#pw1)" transform="rotate(-60 130 210)"/>
+    <ellipse cx="10" cy="185" rx="60" ry="27" fill="url(#pw2)" transform="rotate(-5 10 185)"/>
+    <!-- Center -->
+    <ellipse cx="72" cy="182" rx="20" ry="18" fill="#f5f8e0" opacity="0.95"/>
+    <ellipse cx="72" cy="182" rx="11" ry="10" fill="#e8e090" opacity="0.8"/>
+    <ellipse cx="72" cy="182" rx="5" ry="5" fill="#d4b840" opacity="0.9"/>
+  </g>
+
+  <!-- Small white magnolia left-lower -->
+  <g filter="url(#sf2)" opacity="0.88">
+    <ellipse cx="180" cy="265" rx="48" ry="22" fill="url(#pw1)" transform="rotate(-20 180 265)"/>
+    <ellipse cx="145" cy="255" rx="46" ry="21" fill="url(#pw2)" transform="rotate(8 145 255)"/>
+    <ellipse cx="200" cy="248" rx="45" ry="20" fill="url(#pw1)" transform="rotate(-45 200 248)"/>
+    <ellipse cx="155" cy="275" rx="45" ry="20" fill="url(#pw2)" transform="rotate(22 155 275)"/>
+    <ellipse cx="215" cy="268" rx="43" ry="19" fill="url(#pw1)" transform="rotate(-55 215 268)"/>
+    <!-- Center -->
+    <ellipse cx="175" cy="260" rx="14" ry="13" fill="#f5f8e0" opacity="0.95"/>
+    <ellipse cx="175" cy="260" rx="7" ry="6" fill="#e0d870" opacity="0.8"/>
+  </g>
+
+  <!-- Baby's breath cluster LEFT -->
+  <g opacity="0.9">
+    <path d="M220 280 Q200 240 185 200 Q175 170 190 140" stroke="#6aaa6a" stroke-width="2" fill="none" opacity="0.5"/>
+    <path d="M220 280 Q235 245 250 215 Q265 190 260 165" stroke="#6aaa6a" stroke-width="1.8" fill="none" opacity="0.5"/>
+    <!-- Tiny flowers along stems -->
+    <circle cx="192" cy="195" r="6" fill="#fdfffe" opacity="0.95"/><circle cx="192" cy="195" r="3" fill="#f8fdf0" opacity="0.9"/>
+    <circle cx="186" cy="175" r="5.5" fill="#fdfffe" opacity="0.9"/><circle cx="186" cy="175" r="2.5" fill="#f8fdf0" opacity="0.85"/>
+    <circle cx="192" cy="155" r="5" fill="#fdfffe" opacity="0.88"/><circle cx="192" cy="155" r="2.5" fill="#f8fdf0" opacity="0.8"/>
+    <circle cx="197" cy="140" r="4.5" fill="#fdfffe" opacity="0.85"/>
+    <circle cx="183" cy="142" r="4" fill="#fdfffe" opacity="0.82"/>
+    <circle cx="250" cy="210" r="6" fill="#fdfffe" opacity="0.92"/><circle cx="250" cy="210" r="3" fill="#f8fdf0" opacity="0.88"/>
+    <circle cx="258" cy="192" r="5.5" fill="#fdfffe" opacity="0.88"/>
+    <circle cx="260" cy="174" r="5" fill="#fdfffe" opacity="0.85"/>
+    <circle cx="206" cy="168" r="5" fill="#fdfffe" opacity="0.85"/>
+    <circle cx="215" cy="152" r="4.5" fill="#fdfffe" opacity="0.82"/>
+    <!-- More tiny dots -->
+    <circle cx="200" cy="182" r="3.5" fill="#ffffff" opacity="0.9"/>
+    <circle cx="210" cy="172" r="3" fill="#ffffff" opacity="0.85"/>
+    <circle cx="225" cy="185" r="3.5" fill="#ffffff" opacity="0.88"/>
+    <circle cx="240" cy="195" r="3" fill="#ffffff" opacity="0.85"/>
+    <circle cx="237" cy="175" r="3.5" fill="#ffffff" opacity="0.82"/>
+  </g>
+
+  <!-- === RIGHT SIDE: mirror === -->
+
+  <!-- Big dark leaf right -->
+  <ellipse cx="650" cy="200" rx="90" ry="45" fill="#2d5a3d" opacity="0.85" transform="rotate(30 650 200)" filter="url(#sf)"/>
+  <ellipse cx="610" cy="170" rx="80" ry="38" fill="#3d7a50" opacity="0.75" transform="rotate(45 610 170)" filter="url(#sf)"/>
+  <ellipse cx="680" cy="240" rx="85" ry="40" fill="#264e35" opacity="0.8" transform="rotate(15 680 240)" filter="url(#sf)"/>
+  <ellipse cx="560" cy="250" rx="70" ry="32" fill="#4a8a5c" opacity="0.7" transform="rotate(55 560 250)" filter="url(#sf)"/>
+
+  <!-- Large white magnolia right -->
+  <g filter="url(#sf2)" opacity="0.95">
+    <ellipse cx="620" cy="180" rx="68" ry="32" fill="url(#pw1)" transform="rotate(15 620 180)"/>
+    <ellipse cx="670" cy="160" rx="65" ry="30" fill="url(#pw2)" transform="rotate(-10 670 160)"/>
+    <ellipse cx="590" cy="150" rx="62" ry="28" fill="url(#pw1)" transform="rotate(40 590 150)"/>
+    <ellipse cx="660" cy="210" rx="64" ry="30" fill="url(#pw2)" transform="rotate(-25 660 210)"/>
+    <ellipse cx="570" cy="210" rx="60" ry="28" fill="url(#pw1)" transform="rotate(60 570 210)"/>
+    <ellipse cx="690" cy="185" rx="60" ry="27" fill="url(#pw2)" transform="rotate(5 690 185)"/>
+    <!-- Center -->
+    <ellipse cx="628" cy="182" rx="20" ry="18" fill="#f5f8e0" opacity="0.95"/>
+    <ellipse cx="628" cy="182" rx="11" ry="10" fill="#e8e090" opacity="0.8"/>
+    <ellipse cx="628" cy="182" rx="5" ry="5" fill="#d4b840" opacity="0.9"/>
+  </g>
+
+  <!-- Small white magnolia right -->
+  <g filter="url(#sf2)" opacity="0.88">
+    <ellipse cx="520" cy="265" rx="48" ry="22" fill="url(#pw1)" transform="rotate(20 520 265)"/>
+    <ellipse cx="555" cy="255" rx="46" ry="21" fill="url(#pw2)" transform="rotate(-8 555 255)"/>
+    <ellipse cx="500" cy="248" rx="45" ry="20" fill="url(#pw1)" transform="rotate(45 500 248)"/>
+    <ellipse cx="545" cy="275" rx="45" ry="20" fill="url(#pw2)" transform="rotate(-22 545 275)"/>
+    <ellipse cx="485" cy="268" rx="43" ry="19" fill="url(#pw1)" transform="rotate(55 485 268)"/>
+    <ellipse cx="525" cy="260" rx="14" ry="13" fill="#f5f8e0" opacity="0.95"/>
+    <ellipse cx="525" cy="260" rx="7" ry="6" fill="#e0d870" opacity="0.8"/>
+  </g>
+
+  <!-- Baby's breath RIGHT -->
+  <g opacity="0.9">
+    <path d="M480 280 Q500 240 515 200 Q525 170 510 140" stroke="#6aaa6a" stroke-width="2" fill="none" opacity="0.5"/>
+    <path d="M480 280 Q465 245 450 215 Q435 190 440 165" stroke="#6aaa6a" stroke-width="1.8" fill="none" opacity="0.5"/>
+    <circle cx="508" cy="195" r="6" fill="#fdfffe" opacity="0.95"/><circle cx="508" cy="195" r="3" fill="#f8fdf0" opacity="0.9"/>
+    <circle cx="514" cy="175" r="5.5" fill="#fdfffe" opacity="0.9"/>
+    <circle cx="508" cy="155" r="5" fill="#fdfffe" opacity="0.88"/>
+    <circle cx="503" cy="140" r="4.5" fill="#fdfffe" opacity="0.85"/>
+    <circle cx="517" cy="142" r="4" fill="#fdfffe" opacity="0.82"/>
+    <circle cx="450" cy="210" r="6" fill="#fdfffe" opacity="0.92"/>
+    <circle cx="442" cy="192" r="5.5" fill="#fdfffe" opacity="0.88"/>
+    <circle cx="440" cy="174" r="5" fill="#fdfffe" opacity="0.85"/>
+    <circle cx="494" cy="168" r="5" fill="#fdfffe" opacity="0.85"/>
+    <circle cx="485" cy="152" r="4.5" fill="#fdfffe" opacity="0.82"/>
+    <circle cx="500" cy="182" r="3.5" fill="#ffffff" opacity="0.9"/>
+    <circle cx="490" cy="172" r="3" fill="#ffffff" opacity="0.85"/>
+    <circle cx="475" cy="185" r="3.5" fill="#ffffff" opacity="0.88"/>
+    <circle cx="460" cy="195" r="3" fill="#ffffff" opacity="0.85"/>
+    <circle cx="463" cy="175" r="3.5" fill="#ffffff" opacity="0.82"/>
+  </g>
+
+  <!-- Center: small baby's breath -->
+  <g opacity="0.7">
+    <path d="M350 280 Q340 255 330 235 Q320 215 328 198" stroke="#6aaa6a" stroke-width="1.5" fill="none" opacity="0.4"/>
+    <path d="M350 280 Q360 255 370 235 Q380 215 372 198" stroke="#6aaa6a" stroke-width="1.5" fill="none" opacity="0.4"/>
+    <circle cx="332" cy="230" r="5" fill="#fdfffe" opacity="0.85"/>
+    <circle cx="328" cy="215" r="4.5" fill="#fdfffe" opacity="0.8"/>
+    <circle cx="332" cy="200" r="4" fill="#ffffff" opacity="0.78"/>
+    <circle cx="368" cy="230" r="5" fill="#fdfffe" opacity="0.85"/>
+    <circle cx="372" cy="215" r="4.5" fill="#fdfffe" opacity="0.8"/>
+    <circle cx="368" cy="200" r="4" fill="#ffffff" opacity="0.78"/>
+    <circle cx="350" cy="240" r="5.5" fill="#fdfffe" opacity="0.88"/>
+  </g>
+</svg>

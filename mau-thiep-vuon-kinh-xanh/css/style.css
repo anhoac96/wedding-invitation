@@ -1,767 +1,698 @@
 /* ==========================================================================
-   MẪU THIỆP VƯỜN KÍNH XANH - THIỆP CƯỚI LÃNG MẠN NHƯ KHU VƯỜN NHIỆT ĐỚI
+   MẪU THIỆP VƯỜN KÍNH XANH - REDESIGN THEO DEMO CHUNGDOI.COM
    Theme: vuon-kinh-xanh (garden_glass_green)
-   Palette:
-     - Primary Deep Forest: #1B4332
-     - Forest Medium: #2D6A4F
-     - Sage Green: #40916C
-     - Mint Green: #52B788
-     - Light Mint: #74C69D
-     - Pale Mint: #95D5B2
-     - Ice Mint: #B7E4C7
-     - Glass White: rgba(255,255,255,0.12)
-     - Card BG: rgba(255,255,255,0.88)
-     - Outer BG: linear-gradient(135deg, #081c15, #1B4332, #2D6A4F, #1B4332)
-   Typography:
-     - Script Names: "Great Vibes", cursive
-     - Formal: "EB Garamond", Georgia, serif
-     - Body: "Lora", serif
-     - Labels: "Montserrat", sans-serif
+   
+   KEY DESIGN:
+   - Full-page garden watercolor background (SVG, fixed/cover)
+   - Envelope: sage-green gradient card floating on garden bg
+   - Main: garden bg shows through, narrow white/glass center panel
+   - Arch header: tall arch-shaped sage card with couple names
+   - Flowers overflow onto arch from sides
    ========================================================================== */
 
-/* ==========================================================================
-   LOCAL FONT FACES
-   ========================================================================== */
 @font-face {
   font-family: 'EB Garamond';
   src: url('../assets/fonts/EBGaramond-Variable.ttf') format('truetype-variations');
-  font-weight: 400 800;
-  font-style: normal;
-  font-display: swap;
+  font-weight: 400 800; font-style: normal; font-display: swap;
 }
-
 @font-face {
   font-family: 'Lora';
   src: url('../assets/fonts/Lora-Regular.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
+  font-weight: 100 900; font-style: normal; font-display: swap;
 }
 
 :root {
-  --forest-deep: #081c15;
-  --forest-dark: #1B4332;
-  --forest-mid: #2D6A4F;
-  --forest-sage: #40916C;
-  --forest-mint: #52B788;
-  --forest-light: #74C69D;
-  --forest-pale: #95D5B2;
-  --forest-ice: #B7E4C7;
-  --forest-snow: #D8F3DC;
+  --sage-dark:   #2d5a3d;
+  --sage-mid:    #3d7050;
+  --sage-base:   #4a8060;
+  --sage-light:  #6a9e78;
+  --sage-pale:   #8abc98;
+  --sage-ice:    #b8d8c0;
+  --sage-snow:   #d8ede0;
+  --sage-frost:  #eef7f0;
 
-  --text-on-dark: #D8F3DC;
-  --text-on-dark-soft: rgba(216, 243, 220, 0.75);
-  --text-on-card: #1B4332;
-  --text-on-card-soft: rgba(27, 67, 50, 0.72);
+  --card-bg:    rgba(205, 225, 210, 0.78); /* sage-green translucent for envelope */
+  --white-glass: rgba(255, 255, 255, 0.82);
+  --panel-bg:   rgba(255, 255, 255, 0.78);
 
-  --glass-bg: rgba(255, 255, 255, 0.10);
-  --glass-border: rgba(255, 255, 255, 0.22);
-  --card-bg: rgba(255, 255, 255, 0.90);
-  --card-border: rgba(27, 67, 50, 0.13);
-  --card-shadow: 0 8px 32px rgba(8, 28, 21, 0.25), 0 2px 8px rgba(8, 28, 21, 0.15);
+  --text-dark:  #2a4a35;
+  --text-mid:   #3d6050;
+  --text-soft:  rgba(42, 74, 53, 0.65);
 
-  --env-bg-start: #081c15;
-  --env-bg-mid: #1B4332;
-  --env-bg-end: #2D6A4F;
-
-  --font-script: 'Great Vibes', 'The Nautigal', cursive;
-  --font-garamond: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
-  --font-lora: 'Lora', Georgia, serif;
-  --font-sans: 'Montserrat', system-ui, sans-serif;
-
-  --max-w: 900px;
+  --font-script: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-serif:  'EB Garamond', 'Lora', Georgia, serif;
+  --font-lora:   'Lora', Georgia, serif;
+  --font-sans:   'Montserrat', system-ui, sans-serif;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  background-color: var(--forest-deep);
+  background: #6a9e78;
 }
 
 body {
   font-family: var(--font-lora);
-  background-color: var(--forest-deep);
-  color: var(--text-on-card);
+  color: var(--text-dark);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
-body.locked {
+body.locked { overflow: hidden; height: 100vh; }
+
+/* ==========================================================================
+   GARDEN BACKGROUND - Fixed full page watercolor SVG
+   ========================================================================== */
+.garden-bg-fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
-  height: 100vh;
+}
+
+.garden-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Sparkle overlay */
+.sparkle-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sparkle-star {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
+  animation: sparkle-pulse 3s ease-in-out infinite;
+}
+
+@keyframes sparkle-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.9); }
+  50% { opacity: 0.8; transform: scale(1.15); }
 }
 
 /* ==========================================================================
-   1. MÀN MỞ PHONG BÌ - VƯỜN KÍNH XANH
-   Background: deep forest multi-tone gradient
+   1. ENVELOPE SCREEN
+   Sage-green card centered on garden background
    ========================================================================== */
 .envelope-screen {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: linear-gradient(135deg,
-    var(--env-bg-start) 0%,
-    var(--env-bg-mid) 35%,
-    var(--env-bg-end) 65%,
-    var(--env-bg-mid) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  padding: 16px;
-  transition: opacity 0.9s cubic-bezier(0.7, 0, 0.3, 1),
-              visibility 0.9s cubic-bezier(0.7, 0, 0.3, 1),
-              transform 0.9s cubic-bezier(0.7, 0, 0.3, 1);
+  padding: 20px;
+  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+  /* No background — garden-bg-fixed shows through */
+  background: transparent;
 }
 
 .envelope-screen.opened {
   opacity: 0;
   visibility: hidden;
-  transform: scale(1.05);
+  transform: scale(1.04);
   pointer-events: none;
 }
 
-/* Animated leaf particles */
-.leaf-particles-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.falling-leaf {
-  position: absolute;
-  top: -40px;
-  pointer-events: none;
-  opacity: 0.75;
-  font-size: 18px;
-  animation: leaf-fall linear infinite;
-  transform-origin: center;
-  user-select: none;
-}
-
-@keyframes leaf-fall {
-  0% {
-    transform: translateY(0) translateX(0) rotate(0deg);
-    opacity: 0;
-  }
-  12% { opacity: 0.75; }
-  88% { opacity: 0.65; }
-  100% {
-    transform: translateY(115vh) translateX(var(--sway, 30px)) rotate(var(--rot, 300deg));
-    opacity: 0;
-  }
-}
-
-/* Corner botanical decorations on envelope screen */
-.env-corner {
-  position: absolute;
-  pointer-events: none;
-  z-index: 2;
-  width: 220px;
-  opacity: 0.65;
-}
-
-@media (min-width: 768px) {
-  .env-corner { width: 320px; }
-}
-
-.env-corner img { width: 100%; height: auto; }
-
-.env-corner-tl {
-  top: -20px;
-  left: -20px;
-  transform: scaleX(-1) scaleY(-1);
-}
-
-.env-corner-br {
-  bottom: -20px;
-  right: -20px;
-}
-
-/* Envelope Card Container */
-.envelope-card-container {
+.env-card-wrap {
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 360px;
+  max-width: 340px;
   cursor: pointer;
 }
 
-@media (min-width: 640px) {
-  .envelope-card-container { max-width: 480px; }
+@media (min-width: 480px) {
+  .env-card-wrap { max-width: 380px; }
 }
 
-/* Envelope Main Card - Glass Morphism */
-.envelope-main-card {
+/* The card itself: sage-green gradient, rounded rect */
+.env-card {
   position: relative;
-  border-radius: 20px;
+  border-radius: 14px;
+  background: linear-gradient(165deg,
+    rgba(195, 220, 200, 0.82) 0%,
+    rgba(175, 210, 185, 0.85) 40%,
+    rgba(165, 200, 175, 0.80) 70%,
+    rgba(185, 215, 195, 0.78) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   box-shadow:
-    0 25px 60px -12px rgba(0, 0, 0, 0.55),
-    0 8px 24px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+    0 20px 60px rgba(30, 70, 45, 0.35),
+    0 4px 16px rgba(30, 70, 45, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   overflow: hidden;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.envelope-main-card:hover {
-  transform: translateY(-5px);
+.env-card:hover {
+  transform: translateY(-4px);
   box-shadow:
-    0 35px 75px -12px rgba(0, 0, 0, 0.65),
-    0 12px 32px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 28px 70px rgba(30, 70, 45, 0.45),
+    0 6px 20px rgba(30, 70, 45, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
-.envelope-glass-bg {
+/* Heart badge - dark circle top center */
+.env-heart-badge {
   position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  background: linear-gradient(145deg,
-    rgba(255, 255, 255, 0.92) 0%,
-    rgba(240, 253, 244, 0.95) 50%,
-    rgba(255, 255, 255, 0.90) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  overflow: hidden;
+  top: -1px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--sage-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 14px rgba(30, 70, 45, 0.5);
+  z-index: 20;
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Corner decoration inside card */
-.env-card-corner {
+/* Floral corner decorations */
+.env-floral-tl, .env-floral-br {
   position: absolute;
   pointer-events: none;
-  width: 55%;
-  opacity: 0.18;
+  width: 110px;
+  opacity: 0.9;
+  z-index: 2;
 }
 
-.env-card-corner-tl {
-  top: -10%;
-  left: -10%;
+.env-floral-tl {
+  top: -8px;
+  left: -8px;
   transform: scaleX(-1) scaleY(-1);
 }
 
-.env-card-corner-br {
-  bottom: -10%;
-  right: -10%;
+.env-floral-br {
+  bottom: -8px;
+  right: -8px;
 }
 
-/* Card Content */
-.envelope-card-content {
+.env-floral-tl img, .env-floral-br img { width: 100%; height: auto; }
+
+/* Card content */
+.env-card-content {
   position: relative;
   z-index: 10;
   text-align: center;
-  padding: 52px 24px 44px;
+  padding: 56px 28px 40px;
 }
 
-.env-the-wedding {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--forest-sage);
+.env-couple-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 10px;
+}
+
+.groom-name, .bride-name {
+  font-family: var(--font-script);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--sage-dark);
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+@media (min-width: 480px) {
+  .groom-name, .bride-name { font-size: 32px; }
+}
+
+.env-amp {
+  font-family: var(--font-lora);
+  font-size: 16px;
+  color: var(--text-mid);
+  opacity: 0.8;
+  line-height: 1.6;
+  display: block;
+}
+
+/* Divider: line · line */
+.env-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 6px 0 10px;
+}
+
+.env-divider-line {
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: rgba(45, 90, 61, 0.4);
+}
+
+.env-divider-dot {
+  color: var(--sage-dark);
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.env-date {
+  font-family: var(--font-lora);
+  font-size: 14px;
+  color: var(--text-mid);
   opacity: 0.85;
   margin-bottom: 10px;
 }
 
-.envelope-couple-names {
-  color: var(--forest-dark);
-  font-family: var(--font-garamond);
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1.15;
-  font-size: 30px;
+.env-greeting {
+  font-family: var(--font-lora);
+  font-size: 14px;
+  color: var(--text-soft);
+  margin-bottom: 2px;
 }
 
-@media (min-width: 640px) {
-  .envelope-couple-names { font-size: 38px; }
-}
-
-.envelope-couple-names span.groom,
-.envelope-couple-names span.bride {
-  display: block;
-  width: 100%;
+.env-guest-name {
+  font-family: var(--font-serif);
+  font-size: 17px;
   font-weight: 500;
+  color: var(--sage-dark);
+  margin-bottom: 20px;
 }
 
-.envelope-couple-names span.amp {
-  font-family: var(--font-lora);
-  display: block;
-  width: 100%;
-  font-size: 18px;
-  line-height: 1;
-  margin: 4px 0;
-  font-weight: 400;
-  color: var(--forest-sage);
-}
-
-/* Botanical Divider */
-.env-botanical-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-.env-divider-line {
-  flex: 1;
-  max-width: 60px;
-  height: 1px;
-}
-
-.env-divider-line.left {
-  background: linear-gradient(to right, transparent, var(--forest-mint));
-}
-
-.env-divider-line.right {
-  background: linear-gradient(to left, transparent, var(--forest-mint));
-}
-
-.env-divider-leaf {
-  font-size: 16px;
-  color: var(--forest-sage);
-}
-
-.envelope-wedding-date {
-  color: var(--text-on-card-soft);
-  font-family: var(--font-lora);
-  font-size: 15px;
-  margin-bottom: 16px;
-}
-
-/* Guest Tag Box */
-.envelope-guest-box { margin-bottom: 22px; }
-
-.envelope-than-moi {
-  color: var(--text-on-card-soft);
-  font-family: var(--font-lora);
-  font-size: 15px;
-  font-weight: 400;
-  margin-bottom: 7px;
-}
-
-.envelope-guest-pill {
-  display: inline-block;
-  background: rgba(27, 67, 50, 0.07);
-  border-radius: 20px;
-  padding: 6px 20px;
-  border: 1px dashed rgba(27, 67, 50, 0.2);
-}
-
-.envelope-guest-name {
-  color: var(--forest-dark);
-  font-family: var(--font-garamond);
-  font-size: 21px;
-  font-weight: 600;
-  margin: 0;
-  line-height: 1.3;
-}
-
-/* Open Button */
-.envelope-open-btn {
-  background: linear-gradient(135deg, var(--forest-dark), var(--forest-mid));
-  color: #FFFFFF;
-  box-shadow: 0 4px 18px rgba(27, 67, 50, 0.45);
-  font-family: var(--font-lora);
-  position: relative;
-  padding: 11px 36px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 9999px;
+/* Open button: dark green pill */
+.env-open-btn {
+  background: var(--sage-dark);
+  color: rgba(255, 255, 255, 0.95);
   border: none;
+  padding: 10px 32px;
+  border-radius: 9999px;
+  font-family: var(--font-lora);
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: center;
-  margin: 0 auto;
-  overflow: hidden;
+  display: inline-block;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 16px rgba(30, 70, 45, 0.4);
 }
 
-.envelope-open-btn:hover {
+.env-open-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 26px rgba(27, 67, 50, 0.55);
-}
-
-.env-btn-icon { font-size: 16px; }
-
-.envelope-btn-shine {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 32px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  animation: shine 3.5s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes shine {
-  0% { transform: translateX(-100%); }
-  40%, 100% { transform: translateX(500%); }
+  box-shadow: 0 6px 22px rgba(30, 70, 45, 0.5);
 }
 
 /* ==========================================================================
-   2. MAIN INVITATION VIEWPORT & CARD
-   Background: forest green gradient
-   Card: white glass morphism panel
+   2. MAIN INVITATION
+   Garden bg shows through. Center panel = narrow white glass column.
    ========================================================================== */
-.main-invitation-viewport {
+.main-invitation {
+  position: relative;
+  z-index: 2;
   width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  background: linear-gradient(180deg,
-    var(--forest-deep) 0%,
-    var(--forest-dark) 25%,
-    var(--forest-mid) 50%,
-    var(--forest-dark) 75%,
-    var(--forest-deep) 100%);
   padding: 0;
-  overflow-x: hidden;
 }
 
-.vuon-kinh-card {
+/* The narrow center column */
+.invitation-panel {
   position: relative;
   width: 100%;
-  max-width: var(--max-w);
-  background: linear-gradient(180deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(240, 253, 244, 0.97) 30%,
-    rgba(255, 255, 255, 0.96) 60%,
-    rgba(240, 253, 244, 0.97) 100%);
-  color: var(--text-on-card);
-  min-height: 100vh;
-  overflow: hidden;
+  max-width: 540px;
   margin: 0 auto;
+  /* Slight white glass behind content sections */
 }
 
 @media (min-width: 768px) {
-  .vuon-kinh-card {
-    border-left: 1px solid rgba(27, 67, 50, 0.1);
-    border-right: 1px solid rgba(27, 67, 50, 0.1);
-    box-shadow: 0 0 60px rgba(8, 28, 21, 0.4);
-  }
-}
-
-/* Background botanical garden overlays */
-.bg-garden-layer {
-  position: absolute;
-  pointer-events: none;
-  z-index: 0;
-  user-select: none;
-  width: 300px;
-  opacity: 0.12;
-}
-
-@media (min-width: 768px) {
-  .bg-garden-layer { width: 480px; }
-}
-
-@media (min-width: 1024px) {
-  .bg-garden-layer { width: 540px; }
-}
-
-.bg-garden-layer img { width: 100%; height: auto; display: block; }
-
-.bg-garden-tl {
-  top: 0;
-  left: 0;
-  transform: scaleX(-1) scaleY(-1);
-}
-
-.bg-garden-br {
-  bottom: 0;
-  right: 0;
-}
-
-.bg-garden-tr {
-  top: 30%;
-  right: 0;
-  transform: scaleX(-1);
-  opacity: 0.09;
-}
-
-.bg-garden-bl {
-  bottom: 25%;
-  left: 0;
-  transform: scaleY(-1);
-  opacity: 0.09;
+  .invitation-panel { max-width: 560px; }
 }
 
 /* ==========================================================================
-   3. HEADER: KHUNG HOA VƯỜN KÍNH (ARCH FRAME)
+   3. HEADER: ARCH CARD
+   Tall arch shape (rounded top) with sage-green background, couple names.
+   Flowers overflow from bottom.
    ========================================================================== */
-.vuon-kinh-header {
+.inv-header {
   position: relative;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 48px;
-  padding-bottom: 24px;
-  z-index: 5;
+  padding-top: 0;
+  /* Arch card overflows into header */
 }
 
-@media (min-width: 768px) {
-  .vuon-kinh-header {
-    padding-top: 72px;
-    padding-bottom: 36px;
+/* The arch card itself */
+.arch-card {
+  position: relative;
+  width: 65%;
+  max-width: 300px;
+  min-height: 260px;
+  margin: 0 auto;
+  /* Arch shape: rounded top (using border-radius) */
+  border-radius: 9999px 9999px 48px 48px;
+  background: linear-gradient(180deg,
+    rgba(195, 225, 205, 0.72) 0%,
+    rgba(185, 215, 198, 0.78) 50%,
+    rgba(175, 208, 190, 0.74) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 8px 32px rgba(30, 70, 45, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 24px;
+  /* Light glow at top (like the demo's warm center glow) */
+}
+
+@media (min-width: 480px) {
+  .arch-card {
+    width: 60%;
+    min-height: 290px;
   }
 }
 
-.arch-frame-wrapper {
+/* Warm glow inside arch */
+.arch-card::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 50%;
+  background: radial-gradient(ellipse, rgba(240, 230, 190, 0.5) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.arch-card-inner {
   position: relative;
-  width: 90%;
-  max-width: 720px;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 20px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
 }
 
-@media (min-width: 768px) {
-  .arch-frame-wrapper { width: 85%; }
+.arch-the-wedding {
+  font-family: var(--font-lora);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--sage-dark);
+  opacity: 0.75;
+  text-transform: none;
+  font-style: italic;
+  margin-bottom: 8px;
 }
 
-.arch-frame-img {
+.arch-couple-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.arch-groom, .arch-bride {
+  font-family: var(--font-script);
+  font-size: clamp(28px, 6vw, 42px);
+  font-weight: 400;
+  color: var(--sage-dark);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+.arch-amp {
+  font-family: var(--font-lora);
+  font-size: 15px;
+  color: var(--text-mid);
+  opacity: 0.75;
+  line-height: 2;
+  display: block;
+}
+
+/* Flowers overlay: positioned to overlap bottom of arch */
+.header-flowers-overlay {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin-top: -80px; /* Overlap into arch card */
+  z-index: 10;
+  pointer-events: none;
+}
+
+.header-flowers-img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.arch-frame-text-overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 15%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  color: var(--forest-dark);
-}
-
-.arch-subtitle-stacked {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: var(--font-sans);
-  font-size: clamp(8px, 2vw, 13px);
-  letter-spacing: 0.28em;
-  line-height: 1.6;
-  color: var(--forest-sage);
-  opacity: 0.85;
-  text-transform: uppercase;
-}
-
-.script-couple-names {
-  font-family: var(--font-script);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  color: var(--forest-dark);
-  margin-top: 2%;
-}
-
-.script-couple-names span.groom,
-.script-couple-names span.bride {
-  font-size: clamp(50px, 8vw, 108px);
-  white-space: nowrap;
-  font-weight: 400;
-  display: block;
-  line-height: 1.4;
-}
-
-.script-couple-names span.amp {
-  font-size: clamp(36px, 5.5vw, 74px);
-  line-height: 1.25;
-  margin: 0;
-  font-weight: 400;
-  color: var(--forest-sage);
-}
-
-/* Date badge below arch */
-.header-date-badge {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(27, 67, 50, 0.07);
-  border: 1px solid rgba(27, 67, 50, 0.15);
-  border-radius: 9999px;
-  padding: 6px 24px;
-  margin-top: 8px;
-}
-
-.header-date-txt {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--forest-sage);
-  font-weight: 500;
-}
-
 /* ==========================================================================
-   4. CEREMONY MAIN SECTION
+   4. CONTENT SECTIONS: white/glass panels
    ========================================================================== */
-.ceremony-main-section {
+.inv-content {
   position: relative;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 44px 24px 36px;
   display: flex;
   flex-direction: column;
-  gap: 60px;
-  padding: 72px 16px 56px;
-  z-index: 10;
+  align-items: center;
+  gap: 44px;
+  /* No max-width limit — takes full panel width */
   width: 100%;
 }
 
 @media (min-width: 768px) {
-  .ceremony-main-section {
-    padding: 100px 24px 80px;
-    gap: 76px;
-  }
-}
-
-/* Section botanical side accents */
-.bg-section-leaf {
-  position: absolute;
-  pointer-events: none;
-  z-index: 0;
-  width: 180px;
-  opacity: 0.1;
-}
-
-@media (min-width: 768px) {
-  .bg-section-leaf { width: 260px; }
-}
-
-.bg-section-leaf img { width: 100%; height: auto; }
-
-.leaf-mid-left {
-  top: 25%;
-  left: -60px;
-  transform: scaleX(-1);
-}
-
-.leaf-mid-right {
-  top: 55%;
-  right: -60px;
+  .inv-content { padding: 56px 36px 48px; gap: 52px; }
 }
 
 /* Section title */
-.section-h2-title {
-  text-transform: uppercase;
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 17px;
   font-weight: 500;
-  font-size: 20px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-align: center;
-  letter-spacing: 0.1em;
-  color: var(--forest-dark);
-  font-family: var(--font-garamond);
-  position: relative;
-}
-
-.section-h2-title::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(to right, transparent, var(--forest-mint), transparent);
-  margin: 10px auto 0;
-  border-radius: 2px;
+  color: var(--sage-dark);
 }
 
 @media (min-width: 768px) {
-  .section-h2-title { font-size: 25px; }
-  .section-h2-title::after { width: 80px; }
+  .section-title { font-size: 20px; }
 }
 
-/* Parents Grid */
-.parents-two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+/* Parents grid: two cols with center vbar */
+.parents-grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  max-width: 480px;
+}
+
+.parents-col {
+  flex: 1;
   text-align: center;
+  padding: 0 12px;
   font-family: var(--font-lora);
-  color: var(--forest-dark);
-  max-width: 680px;
-  margin: 0 auto;
+}
+
+.parents-vbar {
+  width: 1px;
+  background: rgba(45, 90, 61, 0.2);
+  align-self: stretch;
+  min-height: 60px;
+  flex-shrink: 0;
+}
+
+.parents-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 6px;
+}
+
+.parents-names {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.55;
+}
+
+@media (min-width: 480px) {
+  .parents-names { font-size: 16px; }
+}
+
+.parents-addr {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* Announcement */
+.inv-announcement {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--sage-dark);
+  line-height: 1.65;
+  text-transform: uppercase;
+}
+
+@media (min-width: 480px) {
+  .inv-announcement { font-size: 16px; }
+}
+
+/* Formal names */
+.formal-names-block {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
   width: 100%;
 }
 
-@media (min-width: 768px) {
-  .parents-two-col { gap: 24px; }
+.formal-name {
+  font-family: var(--font-script);
+  font-size: clamp(32px, 7vw, 52px);
+  font-weight: 400;
+  color: var(--sage-dark);
+  line-height: 1.25;
 }
 
-.parents-box-title {
-  font-size: 12px;
-  letter-spacing: 0.15em;
+.formal-role {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.formal-amp-wrap {
+  font-family: var(--font-lora);
+  font-size: 28px;
+  color: var(--text-mid);
   opacity: 0.75;
-  margin-bottom: 7px;
-  font-family: var(--font-sans);
-  color: var(--forest-sage);
+  line-height: 1.4;
+  margin: 4px 0;
 }
 
-@media (min-width: 768px) {
-  .parents-box-title { font-size: 14px; }
+/* ==========================================================================
+   5. CEREMONIES
+   ========================================================================== */
+.ceremonies-block {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
 }
 
-.parents-box-names {
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.55;
-  color: var(--forest-dark);
-}
-
-@media (min-width: 768px) {
-  .parents-box-names { font-size: 20px; }
-}
-
-.parents-box-address {
-  font-size: 11px;
-  opacity: 0.65;
-  margin-top: 6px;
-  line-height: 1.45;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: var(--font-sans);
-}
-
-@media (min-width: 768px) {
-  .parents-box-address { font-size: 14px; width: 80%; }
-}
-
-/* Announcement Text */
-.ceremony-announcement-text {
+.ceremony-item {
   text-align: center;
   font-family: var(--font-lora);
-  font-size: 15px;
-  color: var(--forest-dark);
-  opacity: 0.82;
-  line-height: 1.65;
-  max-width: 600px;
-  margin: 0 auto;
+  color: var(--text-dark);
+  padding: 24px 16px;
+  border: 1px solid rgba(45, 90, 61, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.ceremony-title {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sage-mid);
+  font-weight: 500;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+@media (min-width: 480px) {
+  .ceremony-title { font-size: 15px; }
+}
+
+.ceremony-time {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 500;
+  color: var(--sage-dark);
+  line-height: 1.1;
+  margin: 8px 0;
+}
+
+@media (min-width: 480px) {
+  .ceremony-time { font-size: 50px; }
+}
+
+.ceremony-date-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+}
+
+@media (min-width: 480px) {
+  .ceremony-date-row { font-size: 13px; gap: 14px; }
+}
+
+.date-vbar {
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background: rgba(45, 90, 61, 0.35);
+  vertical-align: middle;
+}
+
+.ceremony-lunar {
+  font-size: 12px;
   font-style: italic;
+  color: var(--text-soft);
+  margin-top: 8px;
+  font-family: var(--font-lora);
 }
 
-@media (min-width: 768px) {
-  .ceremony-announcement-text { font-size: 19px; }
+.ceremony-separator {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(45, 90, 61, 0.25), transparent);
+  margin: 0 auto;
 }
 
-/* Couple Formal Names */
-.formal-couple-banner {
-  text-align: center;
+/* Reception */
+.reception-block {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -769,516 +700,214 @@ body.locked {
   width: 100%;
 }
 
-@media (min-width: 768px) {
-  .formal-couple-banner { gap: 14px; }
-}
-
-.formal-role-tag {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--forest-sage);
-  opacity: 0.85;
-}
-
-.formal-person-name {
-  font-family: var(--font-garamond);
-  font-size: clamp(36px, 5.5vw, 60px);
-  font-weight: 500;
-  color: var(--forest-dark);
-  line-height: 1.25;
-}
-
-.formal-amp {
+.reception-sub {
   font-family: var(--font-lora);
-  font-size: 36px;
-  color: var(--forest-sage);
-  line-height: 1;
-  margin: 2px 0;
-}
-
-@media (min-width: 768px) {
-  .formal-amp { font-size: 46px; }
-}
-
-/* ==========================================================================
-   5. CEREMONY GLASS CARDS
-   ========================================================================== */
-.ceremonies-flow-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  width: 100%;
-}
-
-.ceremony-glass-card {
-  max-width: 640px;
-  margin: 0 auto;
-  width: 100%;
-  border-radius: 20px;
-  background: linear-gradient(145deg,
-    rgba(255, 255, 255, 0.85),
-    rgba(240, 253, 244, 0.90));
-  border: 1px solid rgba(82, 183, 136, 0.2);
-  box-shadow:
-    0 4px 24px rgba(27, 67, 50, 0.08),
-    0 1px 4px rgba(27, 67, 50, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  overflow: hidden;
-  position: relative;
-}
-
-.ceremony-glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(to right, var(--forest-mint), var(--forest-light), var(--forest-mint));
-  border-radius: 20px 20px 0 0;
-}
-
-.ceremony-glass-inner {
-  padding: 32px 20px 28px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-@media (min-width: 768px) {
-  .ceremony-glass-inner { padding: 36px 32px 32px; }
-}
-
-.ceremony-leaf-accent {
-  font-size: 20px;
-  margin-bottom: 10px;
-  display: block;
-  color: var(--forest-sage);
-}
-
-.ceremony-card-header {
-  font-family: var(--font-garamond);
-  font-size: 15px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 500;
-  margin-bottom: 10px;
-  color: var(--forest-mid);
-  line-height: 1.4;
-}
-
-@media (min-width: 768px) {
-  .ceremony-card-header { font-size: 18px; }
-}
-
-.ceremony-card-time {
-  font-size: 44px;
-  font-weight: 600;
-  line-height: 1.1;
-  margin: 12px 0;
-  color: var(--forest-dark);
-  font-family: var(--font-garamond);
-}
-
-@media (min-width: 768px) {
-  .ceremony-card-time { font-size: 52px; }
-}
-
-.ceremony-date-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
   font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-family: var(--font-sans);
-  color: var(--forest-mid);
-}
-
-@media (min-width: 768px) {
-  .ceremony-date-row {
-    font-size: 15px;
-    gap: 18px;
-  }
-}
-
-.ceremony-v-divider {
-  width: 1px;
-  height: 20px;
-  background-color: var(--forest-mint);
-  opacity: 0.6;
-}
-
-.ceremony-lunar-txt {
-  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--text-soft);
   font-style: italic;
-  opacity: 0.65;
-  margin-top: 10px;
-  color: var(--forest-mid);
-  font-family: var(--font-lora);
 }
 
-/* ==========================================================================
-   6. RECEPTION GLASS CARD
-   ========================================================================== */
-.reception-block-container {
+.reception-times {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 28px;
-  width: 100%;
-}
-
-.reception-glass-card {
-  background: linear-gradient(145deg,
-    rgba(27, 67, 50, 0.07),
-    rgba(82, 183, 136, 0.06));
-  border: 1px solid rgba(82, 183, 136, 0.22);
-  border-radius: 20px;
-  padding: 32px 20px 28px;
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.reception-glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(to right, var(--forest-sage), var(--forest-mint), var(--forest-sage));
-  border-radius: 20px 20px 0 0;
-}
-
-@media (min-width: 768px) {
-  .reception-glass-card { padding: 36px 32px 32px; }
-}
-
-.reception-intro-sub {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--forest-sage);
-  opacity: 0.9;
-}
-
-.reception-hero-time {
-  font-family: var(--font-garamond);
-  font-size: 50px;
-  font-weight: 600;
-  line-height: 1.1;
-  margin: 10px 0;
-  color: var(--forest-dark);
-}
-
-@media (min-width: 768px) {
-  .reception-hero-time { font-size: 60px; }
-}
-
-.reception-time-row {
-  display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 32px;
-  margin: 18px 0 0;
+  gap: 28px;
+  margin-top: 12px;
 }
 
 .reception-time-label {
   display: block;
   font-family: var(--font-sans);
-  font-size: 11px;
-  text-transform: uppercase;
+  font-size: 10px;
   letter-spacing: 0.1em;
-  color: var(--forest-sage);
-  opacity: 0.85;
+  text-transform: uppercase;
+  color: var(--text-soft);
 }
 
 .reception-time-val {
-  font-family: var(--font-garamond);
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--forest-dark);
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--sage-dark);
 }
 
-.reception-time-vbar {
+.reception-vbar {
   width: 1px;
-  height: 40px;
-  background: rgba(82, 183, 136, 0.35);
+  height: 36px;
+  background: rgba(45, 90, 61, 0.2);
   margin-top: 4px;
 }
 
 /* ==========================================================================
-   7. GALLERY
+   6. GALLERY
    ========================================================================== */
-.gallery-block-container {
+.album-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+  gap: 20px;
   width: 100%;
-  position: relative;
-  z-index: 10;
 }
 
-.gallery-cards-grid {
+.gallery-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 10px;
   width: 100%;
-  max-width: 640px;
-  margin: 0 auto;
+  max-width: 480px;
 }
 
-@media (min-width: 768px) {
-  .gallery-cards-grid { gap: 16px; }
+@media (min-width: 480px) {
+  .gallery-grid { gap: 12px; }
 }
 
-.gallery-card-item {
+.gallery-item {
   position: relative;
   aspect-ratio: 1 / 1;
-  cursor: pointer;
   overflow: hidden;
-  border-radius: 16px;
-  border: 1px solid rgba(82, 183, 136, 0.18);
-  background-color: rgba(27, 67, 50, 0.04);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 10px rgba(27, 67, 50, 0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 10px rgba(30, 70, 45, 0.12);
 }
 
-.gallery-card-item:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 24px rgba(27, 67, 50, 0.18);
-}
+.gallery-item:hover { transform: scale(1.03); }
 
-.gallery-card-item img {
+.gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s ease;
+  transition: transform 0.5s ease;
 }
 
-.gallery-card-item:hover img { transform: scale(1.07); }
+.gallery-item:hover img { transform: scale(1.07); }
 
-.gallery-more-overlay {
+.gallery-more {
   position: absolute;
   inset: 0;
-  background: rgba(27, 67, 50, 0.65);
+  background: rgba(30, 60, 40, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #FFFFFF;
-  font-family: var(--font-garamond);
-  font-size: 26px;
-  font-weight: 600;
-  backdrop-filter: blur(3px);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 500;
+  backdrop-filter: blur(2px);
 }
 
 /* ==========================================================================
-   8. GENERAL SECTIONS (VENUE, FOOTER)
+   7. VENUE
    ========================================================================== */
-.vuon-kinh-section {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  padding: 56px 16px;
-  z-index: 10;
-  width: 100%;
-}
+.venue-block { gap: 24px; }
 
-@media (min-width: 768px) {
-  .vuon-kinh-section {
-    padding: 72px 24px;
-    gap: 44px;
-  }
-}
-
-.venue-section-wrap { text-align: center; }
-
-/* Venue section separator line */
-.venue-section-wrap::before {
-  content: '';
-  display: block;
-  width: 90%;
-  max-width: 600px;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(82, 183, 136, 0.35), transparent);
-  margin: 0 auto 20px;
-}
-
-.venues-grid-two-col {
+.venue-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 18px;
-  max-width: 640px;
-  margin: 0 auto;
+  gap: 16px;
   width: 100%;
+  max-width: 480px;
 }
 
-@media (min-width: 768px) {
-  .venues-grid-two-col {
-    grid-template-columns: 1fr 1fr;
-    gap: 22px;
-  }
+@media (min-width: 480px) {
+  .venue-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
 }
 
-/* Venue glass card */
-.venue-glass-card {
-  background: linear-gradient(145deg,
-    rgba(255, 255, 255, 0.82),
-    rgba(240, 253, 244, 0.88));
-  border: 1px solid rgba(82, 183, 136, 0.2);
-  border-radius: 18px;
-  padding: 26px 18px;
+.venue-item {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(45, 90, 61, 0.12);
+  border-radius: 14px;
+  padding: 22px 16px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  text-align: center;
-  box-shadow: 0 4px 20px rgba(27, 67, 50, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  gap: 8px;
 }
 
-.venue-glass-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(27, 67, 50, 0.14);
-}
-
-.venue-leaf-icon {
-  font-size: 22px;
-  margin-bottom: -4px;
-}
-
-.venue-tag-role {
+.venue-role {
   font-family: var(--font-sans);
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: 10px;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--forest-sage);
-  opacity: 0.85;
+  color: var(--sage-base);
   display: block;
-  margin-bottom: 5px;
 }
 
-.venue-place-name {
-  font-family: var(--font-garamond);
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--forest-dark);
+.venue-name {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--sage-dark);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin-bottom: 6px;
 }
 
-@media (min-width: 768px) {
-  .venue-place-name { font-size: 20px; }
-}
-
-.venue-full-address {
-  font-size: 13px;
-  opacity: 0.75;
-  line-height: 1.5;
-  color: var(--forest-mid);
+.venue-addr {
   font-family: var(--font-lora);
+  font-size: 12px;
+  color: var(--text-soft);
+  line-height: 1.4;
 }
 
-.btn-map-guide {
+.btn-map {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: linear-gradient(135deg, var(--forest-dark), var(--forest-mid));
-  color: #FFFFFF;
-  padding: 10px 24px;
+  gap: 6px;
+  background: var(--sage-dark);
+  color: #fff;
+  padding: 8px 18px;
   border-radius: 9999px;
   text-decoration: none;
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.03em;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 14px rgba(27, 67, 50, 0.3);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 3px 12px rgba(30, 70, 45, 0.3);
 }
 
-.btn-map-guide:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(27, 67, 50, 0.4);
-}
-
-.btn-map-guide svg {
-  width: 15px;
-  height: 15px;
-}
+.btn-map:hover { transform: translateY(-2px); opacity: 0.92; }
 
 /* ==========================================================================
-   9. FOOTER
+   8. FOOTER
    ========================================================================== */
-.vuon-kinh-footer {
-  position: relative;
-  padding: 60px 20px 80px;
-  text-align: center;
+.inv-footer { text-align: center; }
+
+.footer-text {
   font-family: var(--font-lora);
-  color: var(--forest-dark);
-  z-index: 10;
-  background: linear-gradient(180deg,
-    rgba(240, 253, 244, 0.5) 0%,
-    rgba(255, 255, 255, 0.6) 100%);
-}
-
-.footer-garden-deco {
-  width: 160px;
-  margin: 0 auto 24px;
-  opacity: 0.25;
-}
-
-.footer-garden-deco img { width: 100%; height: auto; }
-
-.footer-thank-text {
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.72;
-  opacity: 0.82;
-  max-width: 480px;
-  margin: 0 auto 22px;
+  color: var(--text-mid);
+  opacity: 0.85;
+  max-width: 400px;
   font-style: italic;
+  margin: 0 auto 20px;
 }
 
-.footer-couple-script {
+.footer-script {
   font-family: var(--font-script);
-  font-size: clamp(38px, 6vw, 54px);
+  font-size: clamp(32px, 6vw, 46px);
+  color: var(--sage-dark);
   line-height: 1.1;
-  color: var(--forest-dark);
-  margin-top: 8px;
 }
 
 /* ==========================================================================
-   10. FLOATING MUSIC DISC
+   9. MUSIC BUTTON
    ========================================================================== */
-.floating-music-disc {
+.music-btn {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: 22px;
+  right: 22px;
   z-index: 999;
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--forest-dark), var(--forest-mid));
-  color: #FFFFFF;
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 4px 18px rgba(27, 67, 50, 0.4);
+  background: var(--sage-dark);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 4px 16px rgba(30, 70, 45, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1286,39 +915,34 @@ body.locked {
   transition: transform 0.2s ease;
 }
 
-.floating-music-disc:hover { transform: scale(1.1); }
+.music-btn:hover { transform: scale(1.1); }
 
-.floating-music-disc svg {
-  width: 20px;
-  height: 20px;
+.music-btn.playing svg {
+  animation: spin 4s linear infinite;
 }
 
-.floating-music-disc.playing svg {
-  animation: disc-rotate 4s linear infinite;
-}
-
-@keyframes disc-rotate {
+@keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
 /* ==========================================================================
-   11. LIGHTBOX
+   10. LIGHTBOX
    ========================================================================== */
-.lightbox-full-view {
+.lightbox {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: rgba(8, 28, 21, 0.94);
+  background: rgba(10, 30, 18, 0.93);
   display: none;
   align-items: center;
   justify-content: center;
   padding: 16px;
 }
 
-.lightbox-full-view.active { display: flex; }
+.lightbox.active { display: flex; }
 
-.lightbox-content-wrap {
+.lb-content {
   position: relative;
   max-width: 90vw;
   max-height: 90vh;
@@ -1327,50 +951,56 @@ body.locked {
   align-items: center;
 }
 
-.lightbox-main-img {
+.lb-img {
   max-width: 100%;
   max-height: 80vh;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
 }
 
-.lightbox-close-cross {
+.lb-counter {
+  text-align: center;
+  color: rgba(216, 237, 224, 0.8);
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.lb-close {
   position: absolute;
-  top: 20px;
-  right: 24px;
+  top: 18px;
+  right: 22px;
   background: none;
   border: none;
-  color: #D8F3DC;
+  color: rgba(216, 237, 224, 0.85);
   font-size: 36px;
   cursor: pointer;
   z-index: 10;
-  opacity: 0.85;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s;
 }
 
-.lightbox-close-cross:hover { opacity: 1; }
+.lb-close:hover { opacity: 0.75; }
 
-.lightbox-nav-arrow {
+.lb-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(82, 183, 136, 0.18);
-  border: 1px solid rgba(82, 183, 136, 0.3);
-  color: #FFFFFF;
-  font-size: 26px;
-  width: 48px;
-  height: 48px;
+  background: rgba(82, 160, 100, 0.2);
+  border: 1px solid rgba(82, 160, 100, 0.3);
+  color: #fff;
+  font-size: 24px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s;
   z-index: 10;
 }
 
-.lightbox-nav-arrow:hover { background: rgba(82, 183, 136, 0.35); }
+.lb-nav:hover { background: rgba(82, 160, 100, 0.4); }
 
-.lightbox-nav-arrow.prev { left: 16px; }
-.lightbox-nav-arrow.next { right: 16px; }
+.lb-prev { left: 14px; }
+.lb-next { right: 14px; }

@@ -1,16 +1,16 @@
 /**
- * MẪU THIỆP VƯỜN KÍNH XANH
- * Main Interaction Script - Redesigned
+ * MẪU THIỆP VƯỜN KÍNH - XANH (CHUNG ĐÔI OFFICIAL REPLICA 100%)
+ * Main Interaction & Lightbox Script
  */
 
-// 1. Photos list
+// 1. Photos list for Lightbox Gallery
 const weddingPhotos = [
   '../anh/1.jpg', '../anh/2.jpg', '../anh/3.jpg', '../anh/4.jpg', '../anh/5.jpg',
   '../anh/6.jpg', '../anh/7.jpg', '../anh/8.jpg', '../anh/9.jpg'
 ];
 let currentPhotoIdx = 0;
 
-// 2. DOM
+// 2. DOM Elements
 const envelopeScreen = document.getElementById('envelopeScreen');
 const envelopeCardWrapper = document.getElementById('envelopeCardWrapper');
 const openEnvelopeBtn = document.getElementById('openEnvelopeBtn');
@@ -19,52 +19,27 @@ const musicToggleBtn = document.getElementById('musicToggleBtn');
 const guestEl = document.getElementById('envGuestName');
 const thanMoiEl = document.getElementById('envThanMoi');
 
-// 3. Sparkle star effects (like demo ✦ scattered)
-function createSparkles() {
-  const layer = document.getElementById('sparkleLayer');
-  if (!layer) return;
-  const positions = [
-    { left: '12%', top: '25%', delay: '0s', dur: '3.2s' },
-    { left: '82%', top: '38%', delay: '1.1s', dur: '2.8s' },
-    { left: '8%',  top: '58%', delay: '0.5s', dur: '3.5s' },
-    { left: '88%', top: '62%', delay: '1.8s', dur: '3s'   },
-    { left: '25%', top: '78%', delay: '0.8s', dur: '2.6s' },
-    { left: '70%', top: '20%', delay: '2.2s', dur: '3.3s' },
-    { left: '50%', top: '12%', delay: '1.5s', dur: '2.9s' },
-    { left: '15%', top: '90%', delay: '0.3s', dur: '3.1s' },
-    { left: '78%', top: '85%', delay: '1.9s', dur: '2.7s' },
-  ];
-  positions.forEach(pos => {
-    const star = document.createElement('span');
-    star.className = 'sparkle-star';
-    star.textContent = '✦';
-    star.style.left = pos.left;
-    star.style.top = pos.top;
-    star.style.animationDelay = pos.delay;
-    star.style.animationDuration = pos.dur;
-    layer.appendChild(star);
-  });
-}
-createSparkles();
-
-// 4. URL params
+// 3. Dynamic URL Query Parameters & Smart Vietnamese Greeting Logic
 const urlParams = new URLSearchParams(window.location.search);
 const guestParam = urlParams.get('to') || urlParams.get('guest');
 
 if (guestParam) {
   const decodedGuest = decodeURIComponent(guestParam).trim();
   if (guestEl) guestEl.textContent = decodedGuest;
+
   if (urlParams.get('prefix')) {
     if (thanMoiEl) thanMoiEl.textContent = decodeURIComponent(urlParams.get('prefix'));
   } else {
     const lower = decodedGuest.toLowerCase();
     if (lower.startsWith('bác') || lower.startsWith('chú') || lower.startsWith('cô') ||
         lower.startsWith('dì') || lower.startsWith('cậu') || lower.startsWith('ông') ||
-        lower.startsWith('bà')) {
+        lower.startsWith('bà') || lower.startsWith('gia đình bác') || lower.startsWith('gia đình chú') ||
+        lower.startsWith('gia đình cô') || lower.startsWith('gia đình dì') || lower.startsWith('gia đình cậu')) {
       if (thanMoiEl) thanMoiEl.textContent = 'Kính Mời';
-    } else if (lower.startsWith('anh') || lower.startsWith('chị')) {
+    } else if (lower.startsWith('anh') || lower.startsWith('chị') ||
+               lower.startsWith('gia đình anh') || lower.startsWith('gia đình chị')) {
       if (thanMoiEl) thanMoiEl.textContent = 'Trân Trọng Kính Mời';
-    } else if (lower.startsWith('em')) {
+    } else if (lower.startsWith('em') || lower.startsWith('gia đình em')) {
       if (thanMoiEl) thanMoiEl.textContent = 'Thân Mời';
     } else {
       if (thanMoiEl) thanMoiEl.textContent = 'Kính Mời';
@@ -86,33 +61,45 @@ if (urlParams.get('date')) {
   if (dateEl) dateEl.textContent = decodeURIComponent(urlParams.get('date'));
 }
 
-// 5. Envelope open
+// 4. Envelope Open Controller
 function openEnvelope() {
   if (!envelopeScreen || envelopeScreen.classList.contains('opened')) return;
   envelopeScreen.classList.add('opened');
   document.body.classList.remove('locked');
+
+  // Attempt auto-play music
   if (weddingAudio) {
     weddingAudio.play().then(() => {
       if (musicToggleBtn) musicToggleBtn.classList.add('playing');
-    }).catch(() => {});
+    }).catch(err => {
+      console.log('Audio autoplay prevented by browser policy:', err);
+    });
   }
 }
 
+// Auto-open if ?open=1 parameter is present
 if (urlParams.get('open') === '1') {
   if (envelopeScreen) envelopeScreen.classList.add('opened');
   document.body.classList.remove('locked');
 }
 
-if (envelopeCardWrapper) envelopeCardWrapper.addEventListener('click', openEnvelope);
+if (envelopeCardWrapper) {
+  envelopeCardWrapper.addEventListener('click', openEnvelope);
+}
 if (openEnvelopeBtn) {
-  openEnvelopeBtn.addEventListener('click', (e) => { e.stopPropagation(); openEnvelope(); });
+  openEnvelopeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openEnvelope();
+  });
 }
 
-// 6. Music
+// 5. Floating Music Player Toggle
 if (musicToggleBtn && weddingAudio) {
   musicToggleBtn.addEventListener('click', () => {
     if (weddingAudio.paused) {
-      weddingAudio.play().then(() => musicToggleBtn.classList.add('playing')).catch(() => {});
+      weddingAudio.play().then(() => {
+        musicToggleBtn.classList.add('playing');
+      }).catch(err => console.log('Music play error:', err));
     } else {
       weddingAudio.pause();
       musicToggleBtn.classList.remove('playing');
@@ -120,11 +107,45 @@ if (musicToggleBtn && weddingAudio) {
   });
 }
 
-// 7. Lightbox
+// 6. Countdown Timer (Target: 2027-01-16 16:30:00)
+const weddingDate = new Date('2027-01-16T16:30:00+07:00').getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const diff = weddingDate - now;
+
+  if (diff <= 0) {
+    document.getElementById('cdDays').textContent = '00';
+    document.getElementById('cdHours').textContent = '00';
+    document.getElementById('cdMins').textContent = '00';
+    document.getElementById('cdSecs').textContent = '00';
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  const dEl = document.getElementById('cdDays');
+  const hEl = document.getElementById('cdHours');
+  const mEl = document.getElementById('cdMins');
+  const sEl = document.getElementById('cdSecs');
+
+  if (dEl) dEl.textContent = days < 10 ? '0' + days : days;
+  if (hEl) hEl.textContent = hours < 10 ? '0' + hours : hours;
+  if (mEl) mEl.textContent = minutes < 10 ? '0' + minutes : minutes;
+  if (sEl) sEl.textContent = seconds < 10 ? '0' + seconds : seconds;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// 7. Lightbox Gallery Controller
 const lightboxModal = document.getElementById('lightboxModal');
 const lightboxActiveImg = document.getElementById('lightboxActiveImg');
 const lightboxCounter = document.getElementById('lightboxCounter');
-const galleryItems = document.querySelectorAll('.gallery-item');
+const galleryItems = document.querySelectorAll('.gallery-card-item');
 
 function openLightbox(idx) {
   currentPhotoIdx = idx;
@@ -134,11 +155,18 @@ function openLightbox(idx) {
 }
 
 galleryItems.forEach(card => {
-  card.addEventListener('click', () => openLightbox(parseInt(card.getAttribute('data-index') || '0', 10)));
+  card.addEventListener('click', () => {
+    const idx = parseInt(card.getAttribute('data-index') || '0', 10);
+    openLightbox(idx);
+  });
 });
 
 const closeLightboxBtn = document.getElementById('closeLightboxBtn');
-if (closeLightboxBtn) closeLightboxBtn.addEventListener('click', () => lightboxModal && lightboxModal.classList.remove('active'));
+if (closeLightboxBtn) {
+  closeLightboxBtn.addEventListener('click', () => {
+    if (lightboxModal) lightboxModal.classList.remove('active');
+  });
+}
 
 const prevLightboxBtn = document.getElementById('prevLightboxBtn');
 if (prevLightboxBtn) {
@@ -161,7 +189,11 @@ if (nextLightboxBtn) {
 }
 
 if (lightboxModal) {
-  lightboxModal.addEventListener('click', (e) => { if (e.target === lightboxModal) lightboxModal.classList.remove('active'); });
+  lightboxModal.addEventListener('click', (e) => {
+    if (e.target === lightboxModal) {
+      lightboxModal.classList.remove('active');
+    }
+  });
 }
 
 window.addEventListener('keydown', (e) => {

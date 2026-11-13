@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Tropical leaf cluster for section decoration -->
+  <ellipse cx="100" cy="150" rx="80" ry="45" fill="#2D6A4F" opacity="0.5" transform="rotate(-15 100 150)"/>
+  <ellipse cx="100" cy="150" rx="55" ry="30" fill="#40916C" opacity="0.4" transform="rotate(-15 100 150)"/>
+  <line x1="30" y1="120" x2="170" y2="180" stroke="#1B4332" stroke-width="2.5" opacity="0.4"/>
+  
+  <!-- Holes -->
+  <ellipse cx="115" cy="138" rx="12" ry="7" fill="white" opacity="0.4" transform="rotate(-15 115 138)"/>
+  <ellipse cx="85" cy="162" rx="10" ry="6" fill="white" opacity="0.4" transform="rotate(-15 85 162)"/>
+  
+  <!-- Small ferns -->
+  <path d="M20 190 Q50 150 90 120" stroke="#52B788" stroke-width="2" fill="none" opacity="0.5"/>
+  <ellipse cx="45" cy="165" rx="12" ry="5" fill="#52B788" opacity="0.45" transform="rotate(-55 45 165)"/>
+  <ellipse cx="68" cy="143" rx="10" ry="4" fill="#52B788" opacity="0.45" transform="rotate(-55 68 143)"/>
+  
+  <path d="M180 190 Q150 150 110 120" stroke="#52B788" stroke-width="2" fill="none" opacity="0.5"/>
+  <ellipse cx="155" cy="165" rx="12" ry="5" fill="#52B788" opacity="0.45" transform="rotate(55 155 165)"/>
+  <ellipse cx="132" cy="143" rx="10" ry="4" fill="#52B788" opacity="0.45" transform="rotate(55 132 143)"/>
+  
+  <!-- Flower at top center -->
+  <circle cx="100" cy="40" r="22" fill="#B7E4C7" opacity="0.4"/>
+  <circle cx="82" cy="28" r="13" fill="#95D5B2" opacity="0.5"/>
+  <circle cx="118" cy="28" r="13" fill="#95D5B2" opacity="0.5"/>
+  <circle cx="82" cy="52" r="13" fill="#D8F3DC" opacity="0.5"/>
+  <circle cx="118" cy="52" r="13" fill="#D8F3DC" opacity="0.5"/>
+  <circle cx="100" cy="40" r="10" fill="#52B788" opacity="0.6"/>
+  <circle cx="100" cy="40" r="5" fill="#B7E4C7" opacity="0.9"/>
+  
+  <!-- Vine tendrils -->
+  <path d="M5 100 Q40 80 70 50 Q95 25 100 10" stroke="#74C69D" stroke-width="1.5" fill="none" opacity="0.4"/>
+  <path d="M195 100 Q160 80 130 50 Q105 25 100 10" stroke="#74C69D" stroke-width="1.5" fill="none" opacity="0.4"/>
+  
+  <!-- Dew drops -->
+  <circle cx="60" cy="100" r="3" fill="white" opacity="0.35"/>
+  <circle cx="140" cy="100" r="3" fill="white" opacity="0.35"/>
+  <circle cx="100" cy="90" r="2.5" fill="white" opacity="0.3"/>
+</svg>

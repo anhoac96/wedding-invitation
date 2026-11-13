@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="vi" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Ngọc Anh &amp; Ngọc An - Mẫu Thiệp Vườn Kính Xanh Lãng Mạn</title>
+  <meta name="description"
+    content="Thiệp cưới trực tuyến của Nguyễn Ngọc Anh &amp; Trần Thị Ngọc An - Mẫu Vườn Kính Xanh tươi mát lãng mạn.">
+  <meta name="theme-color" content="#1B4332">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ngọc Anh &amp; Ngọc An - Thiệp Cưới Vườn Kính Xanh">
+  <meta property="og:description"
+    content="Kính mời quý khách tới tham dự lễ thành hôn của Nguyễn Ngọc Anh &amp; Trần Thị Ngọc An">
+  <meta property="og:image" content="../anh/1.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600&family=Great+Vibes&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="locked">
+
+  <!-- Audio Element -->
+  <audio id="weddingAudio" loop preload="auto">
+    <source src="../anh/wedding-music.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- ==========================================================================
+       1. ENVELOPE SCREEN - VƯỜN KÍNH XANH
+       Background: lush deep green garden gradient
+       ========================================================================== -->
+  <div class="envelope-screen" id="envelopeScreen">
+
+    <!-- Animated leaf particles layer -->
+    <div class="leaf-particles-layer" id="leafParticles" aria-hidden="true"></div>
+
+    <!-- Corner botanical decorations -->
+    <div class="env-corner env-corner-tl" aria-hidden="true">
+      <img src="assets/garden-corner.svg" alt="">
+    </div>
+    <div class="env-corner env-corner-br" aria-hidden="true">
+      <img src="assets/garden-corner.svg" alt="">
+    </div>
+
+    <!-- Envelope Center Card Container -->
+    <div class="envelope-card-container" id="envelopeCardWrapper">
+      <!-- Main Envelope Card -->
+      <div class="envelope-main-card">
+        <!-- Glass card background -->
+        <div class="envelope-glass-bg" aria-hidden="true">
+          <!-- Corner garden decoration inside card -->
+          <div class="env-card-corner env-card-corner-tl">
+            <img src="assets/garden-top.svg" alt="">
+          </div>
+          <div class="env-card-corner env-card-corner-br">
+            <img src="assets/garden-top.svg" alt="">
+          </div>
+        </div>
+
+        <!-- Content Overlay -->
+        <div class="envelope-card-content">
+          <!-- THE WEDDING OF label -->
+          <p class="env-the-wedding">THE WEDDING OF</p>
+
+          <h1 class="envelope-couple-names">
+            <span class="groom groom-name-display">Ngọc Anh</span>
+            <span class="amp">&amp;</span>
+            <span class="bride bride-name-display">Ngọc An</span>
+          </h1>
+
+          <!-- Botanical divider -->
+          <div class="env-botanical-divider">
+            <div class="env-divider-line left"></div>
+            <span class="env-divider-leaf">🌿</span>
+            <div class="env-divider-line right"></div>
+          </div>
+
+          <!-- Wedding Date -->
+          <div class="envelope-wedding-date">
+            <span id="envWeddingDate">17 tháng 1, 2027</span>
+          </div>
+
+          <!-- Guest Tag Box -->
+          <div class="envelope-guest-box">
+            <p class="envelope-than-moi" id="envThanMoi">Kính Mời</p>
+            <div class="envelope-guest-pill">
+              <h2 class="envelope-guest-name" id="envGuestName">QUÝ KHÁCH</h2>
+            </div>
+          </div>
+
+          <!-- Open Button -->
+          <button type="button" class="envelope-open-btn" id="openEnvelopeBtn" aria-label="Mở thiệp cưới">
+            <span class="env-btn-icon">🌱</span>
+            <span>Mở thiệp</span>
+            <div class="envelope-btn-shine" aria-hidden="true"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. MAIN INVITATION VIEWPORT & CARD (VƯỜN KÍNH XANH)
+       Background: deep forest green → sage green gradient
+       Card: glass morphism effect with botanical overlays
+       ========================================================================== -->
+  <main class="main-invitation-viewport" id="mainInvitation">
+    <div class="vuon-kinh-card">
+
+      <!-- Full-page botanical background layers -->
+      <div class="bg-garden-layer bg-garden-tl" aria-hidden="true">
+        <img src="assets/garden-corner.svg" alt="">
+      </div>
+      <div class="bg-garden-layer bg-garden-br" aria-hidden="true">
+        <img src="assets/garden-corner.svg" alt="">
+      </div>
+      <div class="bg-garden-layer bg-garden-tr" aria-hidden="true">
+        <img src="assets/garden-corner.svg" alt="">
+      </div>
+      <div class="bg-garden-layer bg-garden-bl" aria-hidden="true">
+        <img src="assets/garden-corner.svg" alt="">
+      </div>
+
+      <!-- ==========================================================================
+           HEADER: KHUNG HOA VƯỜN KÍNH (ARCH FRAME WITH GREAT VIBES FONT)
+           ========================================================================== -->
+      <header class="vuon-kinh-header" aria-label="Đầu thiệp cưới">
+        <!-- Arch botanical frame -->
+        <div class="arch-frame-wrapper">
+          <img src="assets/arch-frame.svg" alt="Khung hoa Vườn Kính Xanh" class="arch-frame-img">
+
+          <!-- Text Inside the Arch Frame -->
+          <div class="arch-frame-text-overlay">
+            <div class="arch-subtitle-stacked">
+              <span>THE</span>
+              <span>WEDDING</span>
+              <span>OF</span>
+            </div>
+
+            <div class="script-couple-names">
+              <span class="groom groom-name-display">Ngọc Anh</span>
+              <span class="amp">&amp;</span>
+              <span class="bride bride-name-display">Ngọc An</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Below arch: date badge -->
+        <div class="header-date-badge">
+          <span class="header-date-txt">17 · 01 · 2027</span>
+        </div>
+      </header>
+
+      <!-- ==========================================================================
+           MAIN CEREMONY SECTION
+           ========================================================================== -->
+      <section class="ceremony-main-section" aria-label="Thông tin nghi thức & lễ cưới">
+
+        <!-- Section botanical accents -->
+        <div class="bg-section-leaf leaf-mid-left" aria-hidden="true">
+          <img src="assets/garden-top.svg" alt="">
+        </div>
+        <div class="bg-section-leaf leaf-mid-right" aria-hidden="true">
+          <img src="assets/garden-top.svg" alt="">
+        </div>
+
+        <!-- 1. Heading: THÔNG TIN LỄ CƯỚI -->
+        <h2 class="section-h2-title">THÔNG TIN LỄ CƯỚI</h2>
+
+        <!-- 2. Parents Grid -->
+        <div class="parents-two-col">
+          <div class="parents-box">
+            <p class="parents-box-title">Nhà Trai</p>
+            <p class="parents-box-names">Ông: Nguyễn Ngọc Giáp<br>Bà: Mai Thị Loạt</p>
+            <p class="parents-box-address">Bái Sậy, Tống Sơn, Thanh Hóa</p>
+          </div>
+
+          <div class="parents-box">
+            <p class="parents-box-title">Nhà Gái</p>
+            <p class="parents-box-names">Ông: Trần Văn Bách<br>Bà: Trần Thị Thủy</p>
+            <p class="parents-box-address">Yên Xá, Hoạt Giang, Thanh Hóa</p>
+          </div>
+        </div>
+
+        <!-- 3. Announcement Text -->
+        <div class="ceremony-announcement-text">
+          Hân hạnh đón tiếp quý khách đến tham dự ngày vui và chia sẻ niềm hạnh phúc cùng gia đình
+        </div>
+
+        <!-- 4. Couple Formal Names -->
+        <div class="formal-couple-banner">
+          <p class="formal-role-tag">Trưởng Nam</p>
+          <h3 class="formal-person-name groom-name-display">Nguyễn Ngọc Anh</h3>
+          <div class="formal-amp">&amp;</div>
+          <p class="formal-role-tag">Trưởng Nữ</p>
+          <h3 class="formal-person-name bride-name-display">Trần Thị Ngọc An</h3>
+        </div>
+
+        <!-- 5. Ceremonies List -->
+        <div class="ceremonies-flow-wrap">
+          <!-- Ceremony 1: Lễ Thành Hôn -->
+          <div class="ceremony-glass-card">
+            <div class="ceremony-glass-inner">
+              <div class="ceremony-leaf-accent" aria-hidden="true">🌿</div>
+              <p class="ceremony-card-header">LỄ THÀNH HÔN ĐƯỢC CỬ HÀNH TẠI TƯ GIA NHÀ TRAI</p>
+              <div class="ceremony-card-time">10:00</div>
+              <div class="ceremony-date-row">
+                <span>CHỦ NHẬT</span>
+                <div class="ceremony-v-divider"></div>
+                <span>17 THÁNG 01</span>
+                <div class="ceremony-v-divider"></div>
+                <span>2027</span>
+              </div>
+              <p class="ceremony-lunar-txt">(Tức ngày 10 tháng 12 năm Bính Ngọ)</p>
+            </div>
+          </div>
+
+          <!-- Ceremony 2: Lễ Nạp Tài -->
+          <div class="ceremony-glass-card">
+            <div class="ceremony-glass-inner">
+              <div class="ceremony-leaf-accent" aria-hidden="true">🌿</div>
+              <p class="ceremony-card-header">LỄ NẠP TÀI ĐƯỢC CỬ HÀNH TẠI TƯ GIA NHÀ GÁI</p>
+              <div class="ceremony-card-time">9:30</div>
+              <div class="ceremony-date-row">
+                <span>THỨ BẢY</span>
+                <div class="ceremony-v-divider"></div>
+                <span>16 THÁNG 01</span>
+                <div class="ceremony-v-divider"></div>
+                <span>2027</span>
+              </div>
+              <p class="ceremony-lunar-txt">(Tức ngày 09 tháng 12 năm Bính Ngọ)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Tiệc Cưới -->
+        <div class="reception-block-container">
+          <h2 class="section-h2-title">TIỆC CƯỚI</h2>
+          <div class="reception-glass-card">
+            <p class="reception-intro-sub">Tiệc cưới sẽ diễn ra vào lúc</p>
+            <div class="reception-hero-time">16:30</div>
+
+            <div class="ceremony-date-row">
+              <span>THỨ BẢY</span>
+              <div class="ceremony-v-divider"></div>
+              <span>16 THÁNG 01</span>
+              <div class="ceremony-v-divider"></div>
+              <span>2027</span>
+            </div>
+            <p class="ceremony-lunar-txt">(Tức ngày 09 tháng 12 năm Bính Ngọ)</p>
+
+            <div class="reception-time-row">
+              <div>
+                <span class="reception-time-label">Đón khách</span>
+                <div class="reception-time-val">16:00</div>
+              </div>
+              <div class="reception-time-vbar"></div>
+              <div>
+                <span class="reception-time-label">Khai tiệc</span>
+                <div class="reception-time-val">16:30</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Album Ảnh Cưới -->
+        <div class="gallery-block-container">
+          <h2 class="section-h2-title">ALBUM ẢNH</h2>
+          <div class="gallery-cards-grid">
+            <div class="gallery-card-item" data-index="0">
+              <img src="../anh/1.jpg" alt="Ảnh cưới 1" loading="lazy">
+            </div>
+            <div class="gallery-card-item" data-index="1">
+              <img src="../anh/2.jpg" alt="Ảnh cưới 2" loading="lazy">
+            </div>
+            <div class="gallery-card-item" data-index="2">
+              <img src="../anh/3.jpg" alt="Ảnh cưới 3" loading="lazy">
+            </div>
+            <div class="gallery-card-item" data-index="3">
+              <img src="../anh/4.jpg" alt="Ảnh cưới 4" loading="lazy">
+              <div class="gallery-more-overlay">+ 5</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==========================================================================
+           SECTION 2: ĐỊA ĐIỂM TỔ CHỨC
+           ========================================================================== -->
+      <section class="vuon-kinh-section venue-section-wrap" aria-label="Địa điểm tổ chức">
+        <h2 class="section-h2-title">ĐỊA ĐIỂM TỔ CHỨC</h2>
+
+        <div class="venues-grid-two-col">
+          <!-- Nhà Gái -->
+          <div class="venue-glass-card">
+            <div class="venue-leaf-icon" aria-hidden="true">🌿</div>
+            <div>
+              <span class="venue-tag-role">Tư gia Nhà Gái</span>
+              <h3 class="venue-place-name">Gia Đình Nhà Gái</h3>
+              <p class="venue-full-address">Thôn Yên Xá, Xã Hoạt Giang, Tỉnh Thanh Hóa</p>
+            </div>
+            <a href="https://maps.app.goo.gl/sp2fcYJJ2hT5y99A6" target="_blank" rel="noopener noreferrer"
+              class="btn-map-guide">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+              </svg>
+              <span>Chỉ Đường Nhà Gái</span>
+            </a>
+          </div>
+
+          <!-- Nhà Trai -->
+          <div class="venue-glass-card">
+            <div class="venue-leaf-icon" aria-hidden="true">🌿</div>
+            <div>
+              <span class="venue-tag-role">Tư gia Nhà Trai</span>
+              <h3 class="venue-place-name">Gia Đình Nhà Trai</h3>
+              <p class="venue-full-address">Thôn Bái Sậy 1, Xã Tống Sơn, Tỉnh Thanh Hóa</p>
+            </div>
+            <a href="https://maps.app.goo.gl/DA5znfEUQYwHzxzm7" target="_blank" rel="noopener noreferrer"
+              class="btn-map-guide">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+              </svg>
+              <span>Chỉ Đường Nhà Trai</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           FOOTER: LỜI CẢM ƠN
+           ========================================================================== -->
+      <footer class="vuon-kinh-footer" aria-label="Lời cảm ơn">
+        <!-- Bottom botanical decoration -->
+        <div class="footer-garden-deco" aria-hidden="true">
+          <img src="assets/garden-top.svg" alt="">
+        </div>
+
+        <h2 class="section-h2-title" style="margin-bottom:16px">LỜI CẢM ƠN</h2>
+        <p class="footer-thank-text">
+          Gia đình Ngọc Anh và Ngọc An mong Quý khách cầm trên tay tấm thiệp này đều sẽ cảm nhận được sự chân thành nhất
+          mà gia đình chúng tôi không thể nói hết được bằng lời. Sự hiện diện của quý khách mang ý nghĩa rất lớn cho gia
+          đình và rất mong được gặp mọi người trong buổi tiệc ấm cúng này!
+        </p>
+        <p class="footer-couple-script groom-name-display bride-name-display">Ngọc Anh &amp; Ngọc An</p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Floating Music Toggle Disc -->
+  <button class="floating-music-disc" id="musicToggleBtn" aria-label="Bật hoặc tắt nhạc nền" title="Bật/Tắt nhạc nền">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+    </svg>
+  </button>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-full-view" id="lightboxModal" role="dialog" aria-modal="true">
+    <button class="lightbox-close-cross" id="closeLightboxBtn" aria-label="Đóng">&times;</button>
+    <button class="lightbox-nav-arrow prev" id="prevLightboxBtn" aria-label="Ảnh trước">&#10094;</button>
+    <button class="lightbox-nav-arrow next" id="nextLightboxBtn" aria-label="Ảnh sau">&#10095;</button>
+
+    <div class="lightbox-content-wrap">
+      <img src="../anh/1.jpg" alt="Ảnh cưới phóng to" class="lightbox-main-img" id="lightboxActiveImg">
+      <div style="text-align:center;color:#ffffff;font-size:13px;margin-top:8px" id="lightboxCounter">1 / 9</div>
+    </div>
+  </div>
+
+  <!-- Main Interaction Script -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

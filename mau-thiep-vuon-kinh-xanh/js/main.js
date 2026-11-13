@@ -25,7 +25,10 @@ const guestParam = urlParams.get('to') || urlParams.get('guest');
 
 if (guestParam) {
   const decodedGuest = decodeURIComponent(guestParam).trim();
-  if (guestEl) guestEl.textContent = decodedGuest;
+  if (guestEl) {
+    guestEl.textContent = decodedGuest;
+    guestEl.style.display = 'block';
+  }
 
   if (urlParams.get('prefix')) {
     if (thanMoiEl) thanMoiEl.textContent = decodeURIComponent(urlParams.get('prefix'));
@@ -46,8 +49,8 @@ if (guestParam) {
     }
   }
 } else {
-  if (guestEl) guestEl.textContent = 'QUÝ KHÁCH';
-  if (thanMoiEl) thanMoiEl.textContent = 'Kính Mời';
+  if (guestEl) guestEl.style.display = 'none';
+  if (thanMoiEl) thanMoiEl.textContent = 'Thân Mời';
 }
 
 if (urlParams.get('groom')) {

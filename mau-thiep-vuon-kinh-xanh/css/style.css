@@ -123,79 +123,40 @@ body.locked {
 .envelope-card-container {
   position: relative;
   z-index: 10;
-  width: 100%;
-  max-width: 320px;
+  width: min(440px, 92vw);
+  max-width: 440px;
+  margin: 0 auto;
   cursor: pointer;
-}
-
-@media (min-width: 480px) {
-  .envelope-card-container {
-    max-width: 380px;
-  }
 }
 
 @media (min-width: 768px) {
   .envelope-card-container {
-    max-width: 420px;
+    width: min(460px, 90vw);
+    max-width: 460px;
   }
 }
 
 .envelope-main-card {
   position: relative;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow:
-    0 25px 60px -12px rgba(53, 69, 47, 0.45),
-    0 8px 24px rgba(53, 69, 47, 0.25);
+    0 22px 55px -10px rgba(53, 69, 47, 0.42),
+    0 8px 24px rgba(53, 69, 47, 0.22);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   overflow: visible;
 }
 
 .envelope-main-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow:
-    0 32px 70px -12px rgba(53, 69, 47, 0.55),
-    0 12px 30px rgba(53, 69, 47, 0.3);
-}
-
-/* Wax Heart Badge at Top Center */
-.envelope-wax-heart {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50px;
-  height: 50px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #47613e, #2a3a24);
-  box-shadow: 0 4px 16px rgba(71, 97, 62, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 30;
-  animation: heart-pulse 2.2s ease-in-out infinite;
-}
-
-.envelope-wax-heart svg {
-  width: 22px;
-  height: 22px;
-  color: #ffffff;
-}
-
-@keyframes heart-pulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    box-shadow: 0 4px 16px rgba(71, 97, 62, 0.45);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.08);
-    box-shadow: 0 6px 22px rgba(71, 97, 62, 0.6);
-  }
+    0 28px 65px -10px rgba(53, 69, 47, 0.5),
+    0 12px 28px rgba(53, 69, 47, 0.28);
 }
 
 .envelope-card-bg-wrap {
   position: absolute;
   inset: 0;
-  border-radius: 12px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(6px) saturate(1.08);
   -webkit-backdrop-filter: blur(6px) saturate(1.08);
@@ -207,42 +168,42 @@ body.locked {
 .envelope-flower-tl {
   position: absolute;
   pointer-events: none;
-  height: 160px;
+  height: 145px;
   width: auto;
   max-width: none;
-  top: -5%;
+  top: -6%;
   left: -7%;
-  transform: translateX(-6%) scaleX(-1) rotate(5deg);
-  opacity: 0.9;
+  transform: translateX(-4%) scaleX(-1) rotate(5deg);
+  opacity: 0.92;
 }
 
 @media (min-width: 768px) {
   .envelope-flower-tl {
-    height: 200px;
+    height: 175px;
     top: -7%;
-    left: -20px;
-    transform: translateX(-11%) scaleX(-1) rotate(5deg);
+    left: -12px;
+    transform: translateX(-8%) scaleX(-1) rotate(5deg);
   }
 }
 
 .envelope-flower-br {
   position: absolute;
   pointer-events: none;
-  height: 160px;
+  height: 145px;
   width: auto;
   max-width: none;
-  bottom: -7%;
-  right: -5%;
-  transform: translateX(6%) scaleX(1) rotate(80deg);
-  opacity: 0.9;
+  bottom: -8%;
+  right: -6%;
+  transform: translateX(4%) scaleX(1) rotate(80deg);
+  opacity: 0.92;
 }
 
 @media (min-width: 768px) {
   .envelope-flower-br {
-    height: 200px;
-    bottom: -10%;
-    right: -10px;
-    transform: translateX(11%) scaleX(1) rotate(80deg);
+    height: 175px;
+    bottom: -9%;
+    right: -8px;
+    transform: translateX(8%) scaleX(1) rotate(80deg);
   }
 }
 
@@ -250,28 +211,29 @@ body.locked {
   position: relative;
   z-index: 10;
   text-align: center;
-  padding: 44px 20px 32px;
+  padding: 34px 28px 24px;
 }
 
 @media (min-width: 480px) {
   .envelope-card-content {
-    padding: 52px 24px 38px;
+    padding: 38px 36px 28px;
   }
 }
 
 .envelope-couple-names {
   color: var(--color-primary);
   font-family: var(--font-viaoda);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
   line-height: 1.25;
+  letter-spacing: 0.02em;
 }
 
 .envelope-couple-names span.groom,
 .envelope-couple-names span.bride {
-  font-size: clamp(28px, 6.5vw, 38px);
+  font-size: clamp(24px, 5.2vw, 32px);
   font-weight: 400;
   display: block;
   width: 100%;
@@ -279,8 +241,8 @@ body.locked {
 
 .envelope-couple-names span.amp {
   font-family: var(--font-baskerville);
-  font-size: 18px;
-  line-height: 1.1;
+  font-size: 15px;
+  line-height: 1;
   margin: 2px 0;
   font-weight: 400;
   opacity: 0.85;
@@ -290,12 +252,12 @@ body.locked {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 6px;
 }
 
 .envelope-divider-line {
-  width: 36px;
+  width: 30px;
   height: 1px;
 }
 
@@ -310,43 +272,38 @@ body.locked {
 .envelope-divider-glyph {
   color: var(--color-primary);
   opacity: 0.7;
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .envelope-wedding-date {
   color: var(--color-secondary);
   font-family: var(--font-baskerville);
-  font-size: 14.5px;
-  margin-bottom: 12px;
-  opacity: 0.9;
+  font-size: 14px;
+  margin-bottom: 8px;
+  opacity: 0.88;
+  letter-spacing: 0.02em;
 }
 
 .envelope-guest-box {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .envelope-than-moi {
   color: var(--color-secondary);
   font-family: var(--font-baskerville);
-  font-size: 14px;
-  opacity: 0.8;
-  margin-bottom: 4px;
-}
-
-.envelope-guest-pill {
-  display: inline-block;
-  background: rgba(71, 97, 62, 0.08);
-  border-radius: 18px;
-  padding: 5px 16px;
-  border: 1px dashed rgba(71, 97, 62, 0.25);
+  font-size: 13.5px;
+  opacity: 0.85;
+  margin-bottom: 0;
+  letter-spacing: 0.03em;
 }
 
 .envelope-guest-name {
   color: var(--color-primary);
-  font-family: var(--font-garamond);
-  font-size: 19px;
+  font-family: var(--font-baskerville);
+  font-size: 17px;
   font-weight: 600;
   line-height: 1.3;
+  margin-top: 4px;
 }
 
 .envelope-open-btn {
@@ -355,9 +312,9 @@ body.locked {
   box-shadow: 0 4px 14px rgba(71, 97, 62, 0.35);
   font-family: var(--font-baskerville);
   position: relative;
-  padding: 9px 32px;
-  font-size: 16px;
-  font-weight: 600;
+  padding: 8px 30px;
+  font-size: 15px;
+  font-weight: 500;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
